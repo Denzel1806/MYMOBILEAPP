@@ -60,25 +60,25 @@ import { User } from '../../../shared/interfaces/user.interface';
               <ion-label>Account Settings</ion-label>
             </ion-list-header>
 
-            <ion-item class="menu-item" button detail="true" routerLink="/tabs/profile/edit">
+            <ion-item class="menu-item" button detail="true" routerLink="/settings">
               <ion-icon name="person-outline" slot="start"></ion-icon>
               <ion-label>Edit Profile</ion-label>
               <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
             </ion-item>
 
-            <ion-item class="menu-item" button detail="true" routerLink="/tabs/profile/security">
+            <ion-item class="menu-item" button detail="true" routerLink="/orders">
               <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
               <ion-label>Security</ion-label>
               <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
             </ion-item>
 
-            <ion-item class="menu-item" button detail="true" routerLink="/tabs/profile/notifications">
+            <ion-item class="menu-item" button detail="true" routerLink="/settings">
               <ion-icon name="notifications-outline" slot="start"></ion-icon>
               <ion-label>Notifications</ion-label>
               <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>
             </ion-item>
 
-            <ion-item class="menu-item" button detail="true" routerLink="/tabs/profile/help">
+            <ion-item class="menu-item" button detail="true" routerLink="/support">
               <ion-icon name="help-circle-outline" slot="start"></ion-icon>
               <ion-label>Help & Support</ion-label>
               <ion-icon name="chevron-forward-outline" slot="end"></ion-icon>

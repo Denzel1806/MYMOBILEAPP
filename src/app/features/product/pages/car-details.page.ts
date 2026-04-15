@@ -67,7 +67,7 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
           <div class="main-image">
             <img [src]="car.thumbnail" [alt]="car.brand + ' ' + car.model" />
           </div>
-          <div class="thumbnail-gallery" *ngIf="car.gallery.length > 0">
+          <div class="thumbnail-gallery" *ngIf="car.gallery.length > 1">
             <div
               class="thumbnail"
               *ngFor="let image of car.gallery; let i = index"
@@ -92,6 +92,9 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
             </div>
             <div class="price-section">
               <div class="price">\${{ car.price | number }}</div>
+              <div class="original-price" *ngIf="car.price > 0">
+                \${{ (car.price * 1.08) | number }}
+              </div>
             </div>
           </div>
 
@@ -102,7 +105,7 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
                 <ion-col size="6" size-md="3">
                   <div class="spec-item">
                     <ion-icon name="speedometer-outline"></ion-icon>
-                    <div class="spec-value">{{ car.rangeKm ? (car.rangeKm + ' km') : 'N/A' }}</div>
+                    <div class="spec-value">{{ car.rangeKm || 0 | number }} km</div>
                     <div class="spec-label">Range</div>
                   </div>
                 </ion-col>
@@ -141,7 +144,7 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
           <div class="features-section">
             <h3>Features</h3>
             <div class="features-grid">
-              <ion-chip *ngFor="let feature of car.specifications.technology" color="primary" outline>
+              <ion-chip *ngFor="let feature of getFeatures()" color="primary" outline>
                 <ion-label>{{ feature }}</ion-label>
               </ion-chip>
             </div>
@@ -299,6 +302,16 @@ export class CarDetailsPage implements OnInit {
   getEmptyStars(): number[] {
     const rating = this.car?.rating || 0;
     return Array(5 - Math.floor(rating)).fill(0);
+  }
+
+  getFeatures(): string[] {
+    if (!this.car) return [];
+
+    return [
+      ...this.car.specifications.safety,
+      ...this.car.specifications.comfort,
+      ...this.car.specifications.technology,
+    ];
   }
 
   increaseQuantity() {

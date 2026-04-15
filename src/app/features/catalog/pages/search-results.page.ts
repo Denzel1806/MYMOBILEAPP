@@ -111,7 +111,7 @@ import { CarCardComponent } from '../../../shared/components/car-card/car-card.c
           <ion-grid>
             <ion-row>
               <ion-col size="12" size-md="6" size-lg="4" *ngFor="let car of filteredCars">
-                <app-car-card [car]="car" (cardClick)="onCarClick(car)"></app-car-card>
+                <app-car-card [car]="car" (viewDetails)="onCarClick($event)"></app-car-card>
               </ion-col>
             </ion-row>
           </ion-grid>

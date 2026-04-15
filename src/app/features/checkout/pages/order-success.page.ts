@@ -67,7 +67,7 @@ import { Order } from '../../../shared/interfaces/order.interface';
               </div>
               <div class="order-item-details">
                 <h4>{{ item.car.brand }} {{ item.car.model }}</h4>
-                <p class="item-specs">{{ item.car.year }} • {{ item.car.fuelType }}</p>
+                <p class="item-specs">{{ item.car.year }} • {{ item.car.rangeKm || 0 | number }} km range</p>
                 <p class="item-quantity">Quantity: {{ item.quantity }}</p>
               </div>
               <div class="item-price">

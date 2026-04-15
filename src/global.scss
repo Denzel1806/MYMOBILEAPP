@@ -9,6 +9,9 @@
  * https://ionicframework.com/docs/layout/global-stylesheets
  */
 
+/* Mixins */
+@use "theme/mixins.scss" as *;
+
 /* Core CSS required for Ionic components to work properly */
 @import "@ionic/angular/css/core.css";
 
@@ -21,9 +24,6 @@
 /* Theme imports */
 @import "theme/variables.scss";
 @import "theme/tokens.scss";
-
-/* Mixins */
-@import "theme/mixins.scss";
 
 /* Global styles */
 * {

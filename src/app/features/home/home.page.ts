@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { CarCardComponent } from '../../shared/components/car-card/car-card.component';
 import { Car } from '../../shared/interfaces/car.interface';
+import { StorageService } from '../../core/services/storage.service';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,10 @@ export class HomePage implements OnInit {
     { name: 'Luxury', icon: 'diamond-outline', count: 8 },
   ];
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private storageService: StorageService,
+  ) {}
 
   ngOnInit() {
     // Mock featured cars - in real app, fetch from service
@@ -80,13 +84,25 @@ export class HomePage implements OnInit {
     this.router.navigate(['/car', car.id]);
   }
 
-  onToggleFavorite(car: Car) {
-    // Handle favorite toggle
-    console.log('Toggle favorite:', car);
+  async onToggleFavorite(car: Car) {
+    const favorites = await this.storageService.getFavorites();
+    const isFavorite = favorites.some(fav => fav.id === car.id);
+
+    if (isFavorite) {
+      await this.storageService.removeFromFavorites(car.id);
+      return;
+    }
+
+    await this.storageService.addToFavorites(car);
   }
 
-  onAddToCart(car: Car) {
-    // Handle add to cart
-    console.log('Add to cart:', car);
+  async onAddToCart(car: Car) {
+    await this.storageService.addToCart({
+      id: Date.now(),
+      car,
+      quantity: 1,
+      addedAt: new Date(),
+    });
+    await this.router.navigate(['/tabs/cart']);
   }
 }
