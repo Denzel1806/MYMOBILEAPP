@@ -1,0 +1,148 @@
+[
+  {
+    "id": "1",
+    "slug": "tesla-model-3",
+    "brand": "Tesla",
+    "model": "Model 3",
+    "year": 2024,
+    "category": "Electric",
+    "bodyType": "Sedan",
+    "transmission": "Automatic",
+    "fuelType": "Electric",
+    "drivetrain": "RWD",
+    "engine": "Electric Motor",
+    "horsepower": 283,
+    "torque": "420 Nm",
+    "rangeKm": 491,
+    "topSpeedKph": 225,
+    "zeroToHundred": "5.8s",
+    "seats": 5,
+    "doors": 4,
+    "colorOptions": ["Pearl White", "Deep Blue", "Stealth Grey", "Red"],
+    "price": 45000,
+    "currency": "USD",
+    "stockStatus": "in-stock",
+    "featured": true,
+    "rating": 4.8,
+    "reviewCount": 1250,
+    "thumbnail": "assets/images/cars/tesla-model-3-thumb.jpg",
+    "gallery": [
+      "assets/images/cars/tesla-model-3-1.jpg",
+      "assets/images/cars/tesla-model-3-2.jpg",
+      "assets/images/cars/tesla-model-3-3.jpg"
+    ],
+    "shortDescription": "The Tesla Model 3 is a compact executive car with a futuristic design and advanced autopilot features.",
+    "longDescription": "Experience the future of driving with the Tesla Model 3. This all-electric sedan offers incredible performance, cutting-edge technology, and zero emissions. With its minimalist interior and over-the-air updates, the Model 3 redefines what a car can be.",
+    "specifications": {
+      "dimensions": {
+        "lengthMm": 4694,
+        "widthMm": 1849,
+        "heightMm": 1443,
+        "wheelbaseMm": 2875,
+        "groundClearanceMm": 140
+      },
+      "performance": {
+        "horsepower": 283,
+        "torque": "420 Nm",
+        "topSpeedKph": 225,
+        "accelerationZeroToHundred": "5.8s"
+      },
+      "efficiency": {
+        "fuelConsumption": "N/A",
+        "batteryCapacity": "60 kWh",
+        "rangeKm": 491
+      },
+      "safety": [
+        "5-star NHTSA safety rating",
+        "Autopilot advanced safety features",
+        "Emergency braking",
+        "Blind spot monitoring"
+      ],
+      "comfort": [
+        "Premium audio system",
+        "Heated seats",
+        "Panoramic sunroof",
+        "Wireless charging"
+      ],
+      "technology": [
+        "15-inch touchscreen",
+        "Over-the-air updates",
+        "Mobile app connectivity",
+        "Voice commands"
+      ]
+    }
+  },
+  {
+    "id": "2",
+    "slug": "bmw-x5",
+    "brand": "BMW",
+    "model": "X5",
+    "year": 2024,
+    "category": "SUV",
+    "bodyType": "SUV",
+    "transmission": "Automatic",
+    "fuelType": "Petrol",
+    "drivetrain": "AWD",
+    "engine": "3.0L Turbo I6",
+    "horsepower": 375,
+    "torque": "540 Nm",
+    "rangeKm": null,
+    "topSpeedKph": 250,
+    "zeroToHundred": "4.1s",
+    "seats": 5,
+    "doors": 5,
+    "colorOptions": ["Alpine White", "Black Sapphire", "Mineral White"],
+    "price": 65000,
+    "currency": "USD",
+    "stockStatus": "in-stock",
+    "featured": true,
+    "rating": 4.7,
+    "reviewCount": 890,
+    "thumbnail": "assets/images/cars/bmw-x5-thumb.jpg",
+    "gallery": [
+      "assets/images/cars/bmw-x5-1.jpg",
+      "assets/images/cars/bmw-x5-2.jpg",
+      "assets/images/cars/bmw-x5-3.jpg"
+    ],
+    "shortDescription": "The BMW X5 is a luxury SUV that combines sporty performance with premium comfort and advanced technology.",
+    "longDescription": "The BMW X5 represents the pinnacle of luxury SUVs. With its powerful engine, sophisticated chassis, and cutting-edge iDrive system, it delivers an unparalleled driving experience. Whether you're navigating city streets or exploring off-road, the X5 adapts to your needs.",
+    "specifications": {
+      "dimensions": {
+        "lengthMm": 4886,
+        "widthMm": 1938,
+        "heightMm": 1745,
+        "wheelbaseMm": 2975,
+        "groundClearanceMm": 204
+      },
+      "performance": {
+        "horsepower": 375,
+        "torque": "540 Nm",
+        "topSpeedKph": 250,
+        "accelerationZeroToHundred": "4.1s"
+      },
+      "efficiency": {
+        "fuelConsumption": "8.5L/100km",
+        "batteryCapacity": null,
+        "rangeKm": null
+      },
+      "safety": [
+        "Advanced airbag system",
+        "Dynamic Stability Control",
+        "Lane departure warning",
+        "Parking assistance"
+      ],
+      "comfort": [
+        "Leather upholstery",
+        "Panoramic sunroof",
+        "Premium sound system",
+        "Massage seats"
+      ],
+      "technology": [
+        "12.3-inch iDrive display",
+        "Wireless Apple CarPlay",
+        "Head-up display",
+        "Gesture control"
+      ]
+    }
+  }
+]

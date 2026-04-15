@@ -1,0 +1,70 @@
+// AUTOSHOWROOM SCSS Mixins
+// Shared SCSS helpers
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// Spacing utilities
+@mixin spacing($property, $size) {
+  #{$property}: var(--spacing-#{$size});
+}
+
+// Typography mixins
+@mixin text-style($size, $weight: regular, $color: var(--text-primary)) {
+  font-family: var(--font-family-primary);
+  font-size: var(--text-#{$size});
+  font-weight: var(--font-weight-#{$weight});
+  color: $color;
+  line-height: var(--line-height-normal);
+}
+
+@mixin heading-style($level, $weight: bold) {
+  font-family: var(--font-family-headings);
+  font-size: var(--text-h#{$level});
+  font-weight: var(--font-weight-#{$weight});
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+}
+
+// Shadow mixins
+@mixin shadow($type) {
+  box-shadow: var(--#{$type}-shadow);
+}
+
+// Border radius
+@mixin radius($size) {
+  border-radius: var(--radius-#{$size});
+}
+
+// Gradient backgrounds
+@mixin gradient-bg($type) {
+  background: var(--#{$type}-gradient);
+}
+
+// Responsive utilities
+@mixin mobile-only {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: 768px) {
+    @content;
+  }
+}

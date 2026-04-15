@@ -1,0 +1,122 @@
+.car-card {
+  margin: 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--floating-shadow);
+  }
+
+  .car-image-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    .car-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: var(--spacing-sm);
+      left: var(--spacing-sm);
+      font-size: var(--text-caption);
+    }
+
+    .favorite-btn {
+      position: absolute;
+      top: var(--spacing-sm);
+      right: var(--spacing-sm);
+      --color: var(--ion-color-danger);
+      --background: rgba(255, 255, 255, 0.9);
+      --border-radius: 50%;
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  ion-card-header {
+    padding: var(--spacing-md);
+
+    .car-title {
+      font-size: var(--text-h4);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-xs);
+    }
+
+    .car-subtitle {
+      font-size: var(--text-body-sm);
+      color: var(--text-secondary);
+    }
+  }
+
+  ion-card-content {
+    padding: var(--spacing-md);
+
+    .car-details {
+      .price-section {
+        margin-bottom: var(--spacing-md);
+
+        .price {
+          font-size: var(--text-h3);
+          font-weight: var(--font-weight-bold);
+          color: var(--price-text);
+        }
+
+        .currency {
+          font-size: var(--text-body-sm);
+          color: var(--text-secondary);
+          margin-left: var(--spacing-xs);
+        }
+      }
+
+      .specs-preview {
+        display: flex;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+
+        .spec {
+          font-size: var(--text-body-sm);
+          color: var(--text-muted);
+          background: var(--muted-surface);
+          padding: var(--spacing-xs) var(--spacing-sm);
+          border-radius: var(--radius-sm);
+        }
+      }
+
+      .rating-section {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+
+        ion-icon {
+          font-size: var(--text-body-sm);
+        }
+
+        .rating {
+          font-size: var(--text-body-sm);
+          font-weight: var(--font-weight-medium);
+          color: var(--text-primary);
+        }
+
+        .reviews {
+          font-size: var(--text-body-sm);
+          color: var(--text-muted);
+        }
+      }
+    }
+
+    .card-actions {
+      ion-button {
+        --border-radius: var(--radius-md);
+        font-weight: var(--font-weight-semibold);
+      }
+    }
+  }
+}

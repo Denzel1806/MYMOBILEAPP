@@ -1,0 +1,57 @@
+@use "../../../../theme/mixins.scss" as *;
+
+.favorites-content {
+  --background: var(--app-background);
+}
+
+.favorites-container {
+  padding: var(--spacing-lg);
+}
+
+.header {
+  margin-bottom: var(--spacing-xl);
+
+  .page-title {
+    @include heading-style(1);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .subtitle {
+    @include text-style(body-lg);
+    color: var(--text-secondary);
+  }
+}
+
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--spacing-3xl) var(--spacing-lg);
+
+  .empty-icon {
+    font-size: 80px;
+    color: var(--text-muted);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  h3 {
+    @include heading-style(3);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+  }
+
+  p {
+    @include text-style(body-md);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .browse-btn {
+    --border-radius: var(--radius-lg);
+  }
+}

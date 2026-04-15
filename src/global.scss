@@ -18,6 +18,103 @@
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
+/* Theme imports */
+@import "theme/variables.scss";
+@import "theme/tokens.scss";
+
+/* Mixins */
+@use "theme/mixins.scss" as *;
+
+/* Global styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family-primary);
+}
+
+body {
+  background: var(--app-background);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+}
+
+/* Utility classes */
+.flex-center {
+  @include flex-center;
+}
+
+.flex-between {
+  @include flex-between;
+}
+
+.flex-column {
+  @include flex-column;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-sm); }
+.p-2 { padding: var(--spacing-md); }
+.p-3 { padding: var(--spacing-lg); }
+.p-4 { padding: var(--spacing-xl); }
+
+/* Component overrides */
+ion-content {
+  --background: var(--app-background);
+}
+
+ion-toolbar {
+  --background: var(--toolbar-background);
+}
+
+ion-card {
+  --background: var(--card-background);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--radius-md);
+}
+
+ion-button {
+  --border-radius: var(--radius-md);
+  font-weight: var(--font-weight-medium);
+}
+
+ion-input, ion-textarea {
+  --border-radius: var(--radius-sm);
+}
+
+ion-searchbar {
+  --border-radius: var(--radius-md);
+  --background: var(--card-background);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
 /* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";

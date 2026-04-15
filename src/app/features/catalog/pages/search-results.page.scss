@@ -1,0 +1,130 @@
+@use "../../../../theme/mixins.scss" as *;
+
+.search-results-content {
+  --background: var(--app-background);
+  padding: var(--spacing-md);
+}
+
+.search-section {
+  margin-bottom: var(--spacing-lg);
+
+  .search-bar {
+    --background: var(--card-background);
+    --border-radius: var(--radius-lg);
+    --box-shadow: var(--shadow-sm);
+  }
+}
+
+.filters-section {
+  margin-bottom: var(--spacing-lg);
+
+  .active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+  }
+
+  .filter-btn {
+    --border-radius: var(--radius-lg);
+    width: 100%;
+  }
+}
+
+.results-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+
+  .results-count {
+    ion-text {
+      @include text-style(body-md);
+      color: var(--text-secondary);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  .sort-btn {
+    --color: var(--ion-color-primary);
+    font-size: var(--text-sm);
+  }
+}
+
+.loading-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl);
+
+  ion-spinner {
+    margin-bottom: var(--spacing-lg);
+  }
+
+  p {
+    @include text-style(body-md);
+    color: var(--text-secondary);
+  }
+}
+
+.results-grid {
+  ion-grid {
+    padding: 0;
+  }
+
+  ion-row {
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+.no-results {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 300px;
+
+  .no-results-content {
+    text-align: center;
+
+    ion-icon {
+      color: var(--text-muted);
+      margin-bottom: var(--spacing-lg);
+    }
+
+    h3 {
+      @include heading-style(3);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+    }
+
+    p {
+      @include text-style(body-md);
+      color: var(--text-secondary);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    ion-button {
+      --border-radius: var(--radius-lg);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .search-results-content {
+    padding: var(--spacing-sm);
+  }
+
+  .results-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-sm);
+  }
+
+  .results-grid {
+    ion-col {
+      padding: 0 var(--spacing-xs);
+    }
+  }
+}

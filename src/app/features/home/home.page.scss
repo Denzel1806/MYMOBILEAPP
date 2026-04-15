@@ -1,0 +1,175 @@
+@use '../../../theme/mixins' as *;
+
+.home-content {
+  --background: var(--app-background);
+}
+
+// Hero Section
+.hero-section {
+  background: var(--hero-gradient);
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  text-align: center;
+  color: var(--text-on-dark);
+
+  .hero-content {
+    max-width: 300px;
+    margin: 0 auto;
+
+    .hero-title {
+      @include heading-style(1);
+      margin-bottom: var(--spacing-md);
+      font-size: var(--text-display);
+    }
+
+    .hero-subtitle {
+      @include text-style(body-lg);
+      margin-bottom: var(--spacing-2xl);
+      opacity: 0.9;
+    }
+
+    .hero-cta {
+      --border-radius: var(--radius-lg);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+}
+
+// Search Section
+.search-section {
+  padding: var(--spacing-lg);
+  background: var(--toolbar-background);
+
+  .main-search {
+    --border-radius: var(--radius-lg);
+    --background: var(--card-background);
+    --box-shadow: var(--card-shadow);
+  }
+}
+
+// Categories Section
+.categories-section {
+  padding: var(--spacing-lg);
+
+  .section-title {
+    @include heading-style(2);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+
+    .category-card {
+      margin: 0;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+
+      .category-content {
+        text-align: center;
+        padding: var(--spacing-lg);
+
+        .category-icon {
+          font-size: 32px;
+          color: var(--ion-color-primary);
+          margin-bottom: var(--spacing-md);
+        }
+
+        .category-name {
+          @include heading-style(4);
+          margin-bottom: var(--spacing-xs);
+          color: var(--text-primary);
+        }
+
+        .category-count {
+          @include text-style(body-sm);
+          color: var(--text-muted);
+          margin: 0;
+        }
+      }
+    }
+  }
+}
+
+// Featured Section
+.featured-section {
+  padding: var(--spacing-lg);
+
+  .section-header {
+    @include flex-between;
+    margin-bottom: var(--spacing-lg);
+
+    .section-title {
+      @include heading-style(2);
+      color: var(--text-primary);
+      margin: 0;
+    }
+
+    .see-all-btn {
+      --color: var(--ion-color-primary);
+      font-weight: var(--font-weight-medium);
+    }
+  }
+
+  .cars-grid {
+    display: grid;
+    gap: var(--spacing-md);
+  }
+}
+
+// Brands Section
+.brands-section {
+  padding: var(--spacing-lg);
+  background: var(--section-alt-background);
+
+  .section-title {
+    @include heading-style(2);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+  }
+
+  .brands-list {
+    display: flex;
+    gap: var(--spacing-md);
+    overflow-x: auto;
+    padding-bottom: var(--spacing-sm);
+
+    .brand-item {
+      @include flex-center;
+      flex-direction: column;
+      min-width: 80px;
+      padding: var(--spacing-md);
+      background: var(--card-background);
+      border-radius: var(--radius-md);
+      box-shadow: var(--card-shadow);
+
+      .brand-logo {
+        width: 40px;
+        height: 40px;
+        @include flex-center;
+        background: var(--ion-color-primary);
+        color: var(--text-on-primary);
+        border-radius: 50%;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--text-h4);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .brand-name {
+        @include text-style(body-sm);
+        color: var(--text-primary);
+        text-align: center;
+        font-weight: var(--font-weight-medium);
+      }
+    }
+  }
+}
+
+#container a {
+  text-decoration: none;
+}

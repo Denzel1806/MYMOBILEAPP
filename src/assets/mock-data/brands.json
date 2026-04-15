@@ -1,0 +1,38 @@
+[
+  {
+    "id": "tesla",
+    "name": "Tesla",
+    "logo": "assets/images/brands/tesla-logo.png",
+    "description": "American electric vehicle and clean energy company",
+    "country": "USA",
+    "founded": 2003,
+    "website": "https://www.tesla.com"
+  },
+  {
+    "id": "bmw",
+    "name": "BMW",
+    "logo": "assets/images/brands/bmw-logo.png",
+    "description": "German multinational company which produces luxury vehicles and motorcycles",
+    "country": "Germany",
+    "founded": 1916,
+    "website": "https://www.bmw.com"
+  },
+  {
+    "id": "mercedes",
+    "name": "Mercedes-Benz",
+    "logo": "assets/images/brands/mercedes-logo.png",
+    "description": "German luxury and commercial vehicle automotive brand",
+    "country": "Germany",
+    "founded": 1926,
+    "website": "https://www.mercedes-benz.com"
+  },
+  {
+    "id": "toyota",
+    "name": "Toyota",
+    "logo": "assets/images/brands/toyota-logo.png",
+    "description": "Japanese multinational automotive manufacturer",
+    "country": "Japan",
+    "founded": 1937,
+    "website": "https://www.toyota.com"
+  }
+]

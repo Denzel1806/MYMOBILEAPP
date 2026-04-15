@@ -1,0 +1,115 @@
+@use "../../../../theme/mixins.scss" as *;
+
+.about-content {
+  --background: var(--app-background);
+}
+
+.about-container {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.hero-section {
+  background: var(--hero-gradient);
+  padding: var(--spacing-3xl) var(--spacing-lg);
+  text-align: center;
+  color: var(--text-on-dark);
+
+  .logo {
+    margin-bottom: var(--spacing-lg);
+
+    ion-icon {
+      font-size: 80px;
+    }
+  }
+
+  .brand-name {
+    @include heading-style(1);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 2px;
+  }
+
+  .tagline {
+    @include text-style(body-lg);
+    opacity: 0.9;
+  }
+}
+
+.content-section {
+  padding: var(--spacing-xl);
+
+  .mission-card, .vision-card, .contact-card {
+    background: var(--card-background);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--card-shadow);
+
+    .section-title {
+      @include heading-style(2);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    .mission-text, .vision-text {
+      @include text-style(body-lg);
+      color: var(--text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+
+    .feature-item {
+      background: var(--card-background);
+      border-radius: var(--radius-lg);
+      padding: var(--spacing-lg);
+      text-align: center;
+      box-shadow: var(--card-shadow);
+
+      .feature-icon {
+        font-size: 32px;
+        color: var(--ion-color-primary);
+        margin-bottom: var(--spacing-md);
+      }
+
+      h3 {
+        @include heading-style(4);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      p {
+        @include text-style(body-sm);
+        color: var(--text-secondary);
+        margin: 0;
+      }
+    }
+  }
+
+  .contact-card {
+    .contact-info {
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-md);
+
+        ion-icon {
+          font-size: 20px;
+          color: var(--ion-color-primary);
+          flex-shrink: 0;
+        }
+
+        span {
+          @include text-style(body-md);
+          color: var(--text-secondary);
+        }
+      }
+    }
+  }
+}

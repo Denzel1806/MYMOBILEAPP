@@ -1,0 +1,207 @@
+@use "../../../../theme/mixins.scss" as *;
+
+.car-details-content {
+  --background: var(--app-background);
+}
+
+.image-gallery {
+  .main-image {
+    position: relative;
+    width: 100%;
+    height: 300px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    }
+  }
+
+  .thumbnail-gallery {
+    display: flex;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    overflow-x: auto;
+
+    .thumbnail {
+      flex-shrink: 0;
+      width: 80px;
+      height: 60px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color 0.2s ease;
+
+      &.active {
+        border-color: var(--ion-color-primary);
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+.car-info {
+  padding: var(--spacing-lg);
+
+  .header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-xl);
+
+    .title-section {
+      flex: 1;
+
+      .car-title {
+        @include heading-style(1);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-sm);
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+
+        ion-icon {
+          color: var(--ion-color-warning);
+          font-size: 16px;
+        }
+
+        .rating-text {
+          @include text-style(body-sm);
+          color: var(--text-secondary);
+          margin-left: var(--spacing-xs);
+        }
+      }
+    }
+
+    .price-section {
+      text-align: right;
+
+      .price {
+        @include heading-style(2);
+        color: var(--ion-color-primary);
+        font-weight: var(--font-weight-bold);
+      }
+
+      .original-price {
+        @include text-style(body-sm);
+        color: var(--text-muted);
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .specs-section {
+    margin-bottom: var(--spacing-xl);
+
+    .spec-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--spacing-md);
+      background: var(--card-background);
+      border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-sm);
+
+      ion-icon {
+        font-size: 24px;
+        color: var(--ion-color-primary);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .spec-value {
+        @include text-style(body-lg);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+      }
+
+      .spec-label {
+        @include text-style(body-sm);
+        color: var(--text-secondary);
+      }
+    }
+  }
+
+  .description-section,
+  .features-section {
+    margin-bottom: var(--spacing-xl);
+
+    h3 {
+      @include heading-style(3);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-md);
+    }
+
+    p {
+      @include text-style(body-md);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+  }
+
+  .features-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+  }
+
+  .cart-section {
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-md);
+      margin-bottom: var(--spacing-lg);
+
+      ion-button {
+        --border-radius: var(--radius-md);
+        width: 40px;
+        height: 40px;
+      }
+
+      .quantity {
+        @include text-style(body-lg);
+        font-weight: var(--font-weight-semibold);
+        min-width: 30px;
+        text-align: center;
+      }
+    }
+
+    .add-to-cart-btn {
+      --border-radius: var(--radius-lg);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .car-info {
+    padding: var(--spacing-md);
+  }
+
+  .header-section {
+    flex-direction: column;
+    gap: var(--spacing-md);
+
+    .price-section {
+      text-align: left;
+    }
+  }
+
+  .specs-section {
+    ion-col {
+      margin-bottom: var(--spacing-md);
+    }
+  }
+}

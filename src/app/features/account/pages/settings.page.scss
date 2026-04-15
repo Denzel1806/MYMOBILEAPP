@@ -1,0 +1,51 @@
+@use "../../../../theme/mixins.scss" as *;
+
+.settings-content {
+  --background: var(--app-background);
+  padding: var(--spacing-md);
+}
+
+.settings-section {
+  background: var(--card-background);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  --box-shadow: var(--shadow-sm);
+
+  h3 {
+    @include heading-style(3);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+  }
+
+  ion-list {
+    background: transparent;
+    --ion-item-background: transparent;
+  }
+
+  ion-item {
+    --border-radius: var(--radius-md);
+    --padding: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+  }
+}
+
+.logout-section {
+  margin-top: var(--spacing-xl);
+
+  .logout-btn {
+    --border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 576px) {
+  .settings-content {
+    padding: var(--spacing-sm);
+  }
+
+  .settings-section {
+    padding: var(--spacing-md);
+  }
+}

@@ -1,0 +1,25 @@
+// AUTOSHOWROOM Custom Token Map
+// Additional tokens beyond Ionic defaults
+
+// Status Colors
+:root {
+  --status-in-stock: #16A34A;
+  --status-low-stock: #F59E0B;
+  --status-sold-out: #DC2626;
+  --status-new-arrival: #2563EB;
+  --status-featured: #7C3AED;
+}
+
+// Border and Divider
+:root {
+  --border-color: #E2E8F0;
+  --divider-color: #CBD5E1;
+  --muted-surface: #F1F5F9;
+  --overlay-dark: rgba(15, 23, 42, 0.72);
+}
+
+// Additional Colors
+:root {
+  --white: #FFFFFF;
+  --black: #000000;
+}

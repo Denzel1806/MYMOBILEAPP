@@ -1,0 +1,81 @@
+@use "../../../../theme/mixins.scss" as *;
+
+.profile-content {
+  --background: var(--app-background);
+}
+
+.profile-container {
+  padding: var(--spacing-lg);
+}
+
+.profile-header {
+  margin-bottom: var(--spacing-xl);
+
+  .avatar-section {
+    @include flex-center;
+    flex-direction: column;
+    text-align: center;
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      @include flex-center;
+      background: var(--ion-color-primary);
+      border-radius: 50%;
+      margin-bottom: var(--spacing-lg);
+
+      ion-icon {
+        font-size: 40px;
+        color: var(--text-on-primary);
+      }
+    }
+
+    .user-info {
+      .user-name {
+        @include heading-style(2);
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-xs);
+      }
+
+      .user-email {
+        @include text-style(body-md);
+        color: var(--text-secondary);
+      }
+    }
+  }
+}
+
+.menu-section {
+  margin-bottom: var(--spacing-xl);
+
+  .profile-menu {
+    background: transparent;
+
+    .menu-item {
+      --background: var(--card-background);
+      --border-radius: var(--radius-lg);
+      margin-bottom: var(--spacing-sm);
+      --inner-padding: var(--spacing-lg);
+
+      ion-icon {
+        color: var(--ion-color-primary);
+      }
+
+      ion-label {
+        font-weight: var(--font-weight-medium);
+        color: var(--text-primary);
+      }
+
+      ion-icon[slot="end"] {
+        color: var(--text-muted);
+      }
+    }
+  }
+}
+
+.logout-section {
+  .logout-btn {
+    --border-radius: var(--radius-lg);
+    font-weight: var(--font-weight-semibold);
+  }
+}

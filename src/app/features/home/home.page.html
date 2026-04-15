@@ -1,0 +1,75 @@
+<ion-content class="home-content">
+  <!-- Hero Section -->
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">Find Your Dream Car</h1>
+      <p class="hero-subtitle">Premium vehicles at competitive prices</p>
+      <ion-button
+        expand="block"
+        color="light"
+        class="hero-cta"
+        (click)="onSearch()"
+      >
+        <ion-icon name="search-outline" slot="start"></ion-icon>
+        Search Cars
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- Search Bar -->
+  <div class="search-section">
+    <ion-searchbar
+      placeholder="Search for cars, brands, models..."
+      (ionInput)="onSearch()"
+      class="main-search"
+    ></ion-searchbar>
+  </div>
+
+  <!-- Categories -->
+  <div class="categories-section">
+    <h2 class="section-title">Browse by Category</h2>
+    <div class="categories-grid">
+      <ion-card
+        *ngFor="let category of categories"
+        class="category-card"
+        (click)="onCategorySelect(category)"
+      >
+        <ion-card-content class="category-content">
+          <ion-icon [name]="category.icon" class="category-icon"></ion-icon>
+          <h3 class="category-name">{{ category.name }}</h3>
+          <p class="category-count">{{ category.count }} cars</p>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+  <!-- Featured Cars -->
+  <div class="featured-section">
+    <div class="section-header">
+      <h2 class="section-title">Featured Cars</h2>
+      <ion-button fill="clear" routerLink="/tabs/shop" class="see-all-btn">
+        See All
+      </ion-button>
+    </div>
+    <div class="cars-grid">
+      <app-car-card
+        *ngFor="let car of featuredCars"
+        [car]="car"
+        (viewDetails)="onViewCarDetails($event)"
+        (toggleFavorite)="onToggleFavorite($event)"
+        (addToCart)="onAddToCart($event)"
+      ></app-car-card>
+    </div>
+  </div>
+
+  <!-- Top Brands -->
+  <div class="brands-section">
+    <h2 class="section-title">Top Brands</h2>
+    <div class="brands-list">
+      <div class="brand-item" *ngFor="let brand of ['Tesla', 'BMW', 'Mercedes', 'Toyota']">
+        <div class="brand-logo">{{ brand.charAt(0) }}</div>
+        <span class="brand-name">{{ brand }}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

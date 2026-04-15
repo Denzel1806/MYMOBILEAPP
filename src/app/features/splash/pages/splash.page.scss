@@ -1,0 +1,59 @@
+@use "../../../../theme/mixins.scss" as *;
+
+.splash-content {
+  --background: var(--hero-gradient);
+}
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: var(--spacing-xl);
+  text-align: center;
+}
+
+.logo-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .logo {
+    margin-bottom: var(--spacing-lg);
+
+    ion-icon {
+      font-size: 80px;
+      color: var(--text-on-dark);
+    }
+  }
+
+  .brand-name {
+    @include heading-style(1);
+    color: var(--text-on-dark);
+    margin-bottom: var(--spacing-sm);
+    letter-spacing: 2px;
+  }
+
+  .tagline {
+    @include text-style(body-md);
+    color: var(--text-on-dark);
+    opacity: 0.8;
+  }
+}
+
+.loading-section {
+  margin-top: var(--spacing-xl);
+
+  ion-spinner {
+    margin-bottom: var(--spacing-md);
+  }
+
+  .loading-text {
+    @include text-style(body-sm);
+    color: var(--text-on-dark);
+    opacity: 0.7;
+  }
+}
