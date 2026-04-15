@@ -30,7 +30,7 @@ import { Car } from '../../interfaces/car.interface';
       <ion-card-content>
         <div class="car-details">
           <div class="price-section">
-            <span class="price">${{ car.price }}</span>
+            <span class="price">\${{ car.price }}</span>
             <span class="currency">{{ car.currency }}</span>
           </div>
 

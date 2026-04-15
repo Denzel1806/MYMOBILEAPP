@@ -23,7 +23,7 @@
 @import "theme/tokens.scss";
 
 /* Mixins */
-@use "theme/mixins.scss" as *;
+@import "theme/mixins.scss";
 
 /* Global styles */
 * {

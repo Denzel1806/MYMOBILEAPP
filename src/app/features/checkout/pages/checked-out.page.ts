@@ -27,7 +27,7 @@ import {
   receiptOutline,
   calendarOutline,
   cashOutline,
-} from 'ionicons';
+} from 'ionicons/icons';
 import { StorageService } from '../../../core/services/storage.service';
 import { Order } from '../../../shared/interfaces/order.interface';
 
@@ -92,7 +92,7 @@ import { Order } from '../../../shared/interfaces/order.interface';
                 <div class="order-total">
                   <div class="total-amount">
                     <ion-icon name="cash-outline"></ion-icon>
-                    <span class="amount">${{ order.total | number }}</span>
+                    <span class="amount">\${{ order.total | number }}</span>
                   </div>
                 </div>
               </ion-card-content>

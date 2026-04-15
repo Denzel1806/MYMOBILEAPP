@@ -42,7 +42,7 @@ export class HomePage implements OnInit {
         torque: '420 Nm',
         rangeKm: 491,
         topSpeedKph: 225,
-        zeroToHundred: 5.8,
+        zeroToHundred: '5.8s',
         seats: 5,
         doors: 4,
         colorOptions: ['Pearl White', 'Deep Blue'],

@@ -20,6 +20,7 @@ import {
   IonCardContent,
   IonSpinner,
   IonBadge,
+  IonLabel,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {
@@ -28,7 +29,7 @@ import {
   optionsOutline,
   star,
   starOutline,
-} from 'ionicons';
+} from 'ionicons/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../../../core/services/storage.service';
 import { Car } from '../../../shared/interfaces/car.interface';
@@ -151,6 +152,7 @@ import { CarCardComponent } from '../../../shared/components/car-card/car-card.c
     IonCardContent,
     IonSpinner,
     IonBadge,
+    IonLabel,
     CommonModule,
     FormsModule,
     CarCardComponent,

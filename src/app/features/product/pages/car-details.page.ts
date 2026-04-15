@@ -24,7 +24,7 @@ import {
   AlertController,
   ToastController,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 import {
   heartOutline,
   heart,
@@ -48,7 +48,7 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
         <ion-buttons slot="start">
           <ion-back-button defaultHref="/tabs/shop"></ion-back-button>
         </ion-buttons>
-        <ion-title>{{ car?.name || 'Car Details' }}</ion-title>
+        <ion-title>{{ car ? (car.brand + ' ' + car.model) : 'Car Details' }}</ion-title>
         <ion-buttons slot="end">
           <ion-button fill="clear" (click)="toggleFavorite()">
             <ion-icon [name]="isFavorite ? 'heart' : 'heart-outline'"></ion-icon>
@@ -67,10 +67,10 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
           <div class="main-image">
             <img [src]="car.thumbnail" [alt]="car.brand + ' ' + car.model" />
           </div>
-          <div class="thumbnail-gallery" *ngIf="car.images.length > 1">
+          <div class="thumbnail-gallery" *ngIf="car.gallery.length > 0">
             <div
               class="thumbnail"
-              *ngFor="let image of car.images; let i = index"
+              *ngFor="let image of car.gallery; let i = index"
               [class.active]="i === activeImageIndex"
               (click)="setActiveImage(i)"
             >
@@ -87,14 +87,11 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
               <div class="rating">
                 <ion-icon name="star" *ngFor="let star of getStars()"></ion-icon>
                 <ion-icon name="star-outline" *ngFor="let star of getEmptyStars()"></ion-icon>
-                <span class="rating-text">{{ car.rating }} ({{ car.reviews }} reviews)</span>
+                <span class="rating-text">{{ car.rating }} ({{ car.reviewCount }} reviews)</span>
               </div>
             </div>
             <div class="price-section">
-              <div class="price">${{ car.price | number }}</div>
-              <div class="original-price" *ngIf="car.originalPrice">
-                ${{ car.originalPrice | number }}
-              </div>
+              <div class="price">\${{ car.price | number }}</div>
             </div>
           </div>
 
@@ -105,8 +102,8 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
                 <ion-col size="6" size-md="3">
                   <div class="spec-item">
                     <ion-icon name="speedometer-outline"></ion-icon>
-                    <div class="spec-value">{{ car.mileage | number }} mi</div>
-                    <div class="spec-label">Mileage</div>
+                    <div class="spec-value">{{ car.rangeKm ? (car.rangeKm + ' km') : 'N/A' }}</div>
+                    <div class="spec-label">Range</div>
                   </div>
                 </ion-col>
                 <ion-col size="6" size-md="3">
@@ -119,7 +116,7 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
                 <ion-col size="6" size-md="3">
                   <div class="spec-item">
                     <ion-icon name="color-palette-outline"></ion-icon>
-                    <div class="spec-value">{{ car.color }}</div>
+                    <div class="spec-value">{{ car.colorOptions[0] || 'N/A' }}</div>
                     <div class="spec-label">Color</div>
                   </div>
                 </ion-col>
@@ -137,14 +134,14 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
           <!-- Description -->
           <div class="description-section">
             <h3>Description</h3>
-            <p>{{ car.description }}</p>
+            <p>{{ car.longDescription }}</p>
           </div>
 
           <!-- Features -->
           <div class="features-section">
             <h3>Features</h3>
             <div class="features-grid">
-              <ion-chip *ngFor="let feature of car.features" color="primary" outline>
+              <ion-chip *ngFor="let feature of car.specifications.technology" color="primary" outline>
                 <ion-label>{{ feature }}</ion-label>
               </ion-chip>
             </div>
@@ -167,7 +164,7 @@ import { CartItem } from '../../../shared/interfaces/cart-item.interface';
               (click)="addToCart()"
               class="add-to-cart-btn"
             >
-              Add to Cart - ${{ (car.price * quantity) | number }}
+              Add to Cart - \${{ (car.price * quantity) | number }}
             </ion-button>
           </div>
         </div>
@@ -228,12 +225,12 @@ export class CarDetailsPage implements OnInit {
   async ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
-      await this.loadCarDetails(+id);
+      await this.loadCarDetails(id);
       await this.checkIfFavorite();
     }
   }
 
-  async loadCarDetails(id: number) {
+  async loadCarDetails(id: string) {
     try {
       // In a real app, this would be an API call
       const cars = await this.storageService.getCars();

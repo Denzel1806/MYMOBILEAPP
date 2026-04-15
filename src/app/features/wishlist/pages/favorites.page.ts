@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { CarCardComponent } from '../../shared/components/car-card/car-card.component';
-import { Car } from '../../shared/interfaces/car.interface';
+import { CarCardComponent } from '../../../shared/components/car-card/car-card.component';
+import { Car } from '../../../shared/interfaces/car.interface';
 
 @Component({
   selector: 'app-favorites',

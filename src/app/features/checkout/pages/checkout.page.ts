@@ -28,7 +28,7 @@ import {
   AlertController,
   ToastController,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 import {
   chevronBack,
   addOutline,
@@ -69,7 +69,7 @@ import { User } from '../../../shared/interfaces/user.interface';
                 </div>
                 <div class="checkout-item-details">
                   <h4>{{ item.car.brand }} {{ item.car.model }}</h4>
-                  <p class="item-price">${{ item.car.price | number }}</p>
+                  <p class="item-price">\${{ item.car.price | number }}</p>
                   <div class="quantity-controls">
                     <ion-button
                       fill="clear"
@@ -90,7 +90,7 @@ import { User } from '../../../shared/interfaces/user.interface';
                   </div>
                 </div>
                 <div class="item-total">
-                  <p>${{ (item.car.price * item.quantity) | number }}</p>
+                  <p>\${{ (item.car.price * item.quantity) | number }}</p>
                   <ion-button
                     fill="clear"
                     color="danger"
@@ -106,11 +106,11 @@ import { User } from '../../../shared/interfaces/user.interface';
             <div class="order-totals">
               <div class="total-row">
                 <span>Subtotal</span>
-                <span>${{ subtotal | number }}</span>
+                <span>\${{ subtotal | number }}</span>
               </div>
               <div class="total-row">
                 <span>Tax (8.5%)</span>
-                <span>${{ tax | number }}</span>
+                <span>\${{ tax | number }}</span>
               </div>
               <div class="total-row">
                 <span>Shipping</span>
@@ -118,7 +118,7 @@ import { User } from '../../../shared/interfaces/user.interface';
               </div>
               <div class="total-row total">
                 <span>Total</span>
-                <span>${{ total | number }}</span>
+                <span>\${{ total | number }}</span>
               </div>
             </div>
           </div>
@@ -266,7 +266,7 @@ import { User } from '../../../shared/interfaces/user.interface';
               class="checkout-btn"
             >
               <ion-icon name="card-outline" slot="start"></ion-icon>
-              Complete Order - ${{ total | number }}
+              Complete Order - \${{ total | number }}
             </ion-button>
           </div>
         </div>
@@ -364,7 +364,7 @@ export class CheckoutPage implements OnInit {
       this.user = await this.storageService.getUser();
       if (this.user) {
         this.checkoutForm.patchValue({
-          fullName: this.user.name,
+          fullName: this.user.fullName,
           email: this.user.email,
         });
       }
@@ -427,7 +427,7 @@ export class CheckoutPage implements OnInit {
     if (this.checkoutForm.valid) {
       try {
         const order: Order = {
-          id: Date.now(),
+          id: Date.now().toString(),
           items: this.cartItems,
           shippingInfo: {
             fullName: this.checkoutForm.value.fullName,
@@ -448,7 +448,7 @@ export class CheckoutPage implements OnInit {
           shipping: this.shipping,
           total: this.total,
           status: 'confirmed',
-          createdAt: new Date(),
+          createdAt: new Date().toISOString(),
         };
 
         await this.storageService.addOrder(order);

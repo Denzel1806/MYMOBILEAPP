@@ -19,7 +19,7 @@ import {
   IonLabel,
   IonBadge,
 } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 import {
   checkmarkCircleOutline,
   homeOutline,
@@ -67,11 +67,11 @@ import { Order } from '../../../shared/interfaces/order.interface';
               </div>
               <div class="order-item-details">
                 <h4>{{ item.car.brand }} {{ item.car.model }}</h4>
-                <p class="item-specs">{{ item.car.year }} • {{ item.car.mileage | number }} mi</p>
+                <p class="item-specs">{{ item.car.year }} • {{ item.car.fuelType }}</p>
                 <p class="item-quantity">Quantity: {{ item.quantity }}</p>
               </div>
               <div class="item-price">
-                <p>${{ (item.car.price * item.quantity) | number }}</p>
+                <p>\${{ (item.car.price * item.quantity) | number }}</p>
               </div>
             </div>
           </div>
@@ -79,11 +79,11 @@ import { Order } from '../../../shared/interfaces/order.interface';
           <div class="order-totals">
             <div class="total-row">
               <span>Subtotal</span>
-              <span>${{ order.subtotal | number }}</span>
+              <span>\${{ order.subtotal | number }}</span>
             </div>
             <div class="total-row">
               <span>Tax</span>
-              <span>${{ order.tax | number }}</span>
+              <span>\${{ order.tax | number }}</span>
             </div>
             <div class="total-row">
               <span>Shipping</span>
@@ -91,7 +91,7 @@ import { Order } from '../../../shared/interfaces/order.interface';
             </div>
             <div class="total-row total">
               <span>Total</span>
-              <span>${{ order.total | number }}</span>
+              <span>\${{ order.total | number }}</span>
             </div>
           </div>
         </div>
@@ -233,11 +233,11 @@ export class OrderSuccessPage implements OnInit {
   async ngOnInit() {
     const orderId = this.route.snapshot.queryParams['orderId'];
     if (orderId) {
-      await this.loadOrder(+orderId);
+      await this.loadOrder(orderId);
     }
   }
 
-  async loadOrder(orderId: number) {
+  async loadOrder(orderId: string) {
     try {
       const orders = await this.storageService.getOrders();
       this.order = orders.find(o => o.id === orderId) || null;

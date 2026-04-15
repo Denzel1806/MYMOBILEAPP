@@ -23,7 +23,7 @@ import {
   chevronDownOutline,
   closeCircle,
   carOutline,
-} from 'ionicons';
+} from 'ionicons/icons';
 import { Router } from '@angular/router';
 import { CarCardComponent } from '../../../shared/components/car-card/car-card.component';
 import { Car } from '../../../shared/interfaces/car.interface';
