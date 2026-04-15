@@ -1,0 +1,1665 @@
+{
+  "meta": {
+    "document_type": "product_design_and_build_specification",
+    "format_version": "1.0.0",
+    "generated_for": "Figma AI and Copilot",
+    "app_name": "AUTOSHOWROOM",
+    "project_type": "frontend-only Ionic + Angular mobile e-commerce application",
+    "summary": "AUTOSHOWROOM is a mobile-first online car showroom and checkout app where users can browse vehicles, view detailed specifications, search and filter inventory, save favorites, add cars to cart, and complete a frontend-only checkout flow.",
+    "source_basis": {
+      "attached_guideline_document": "_o3oqg0ikw_Final-Project-Guidelines.docx",
+      "requirements_interpreted_from_document": [
+        "Must be implemented using IONIC Angular",
+        "Must include common pages such as Home, Login, Register, About Us, Splash Screen",
+        "Should focus on intuitive UX, clear navigation, strong CTA hierarchy, and minimal clutter",
+        "Should include clear documentation of project structure and code organization",
+        "Should remain frontend-only without backend technologies or databases"
+      ]
+    },
+    "technical_target": {
+      "frontend_framework": "Angular 21.x",
+      "mobile_ui_framework": "Ionic 8",
+      "language": "TypeScript",
+      "styling": "SCSS",
+      "rendering": "client-side SPA",
+      "data_mode": "mock JSON data / local state only",
+      "backend": false,
+      "database": false
+    }
+  },
+  "product_overview": {
+    "brand_name": "AUTOSHOWROOM",
+    "brand_positioning": "A sleek, modern, mobile-first online showroom for discovering and purchasing cars.",
+    "core_business_model": "Car e-commerce marketplace / dealership frontend",
+    "primary_goals": [
+      "Present cars in a premium showroom-style interface",
+      "Help users discover vehicles through search, filtering, and category browsing",
+      "Provide clear specifications and pricing for each vehicle",
+      "Guide users from product discovery to cart and checkout",
+      "Offer a polished final project experience suitable for academic presentation"
+    ],
+    "target_audience": [
+      "Students evaluating a final Ionic Angular project",
+      "Users shopping for personal vehicles online",
+      "Customers comparing specs, prices, and body types"
+    ],
+    "project_constraints": {
+      "frontend_only": true,
+      "no_auth_backend": true,
+      "no_live_payment_gateway": true,
+      "no_database": true,
+      "use_mock_content": true,
+      "should_be_demo_ready": true
+    }
+  },
+  "theme_system": {
+    "recommended_theme": {
+      "name": "Midnight Velocity",
+      "theme_intent": "Premium automotive luxury with modern e-commerce clarity",
+      "why_it_fits": [
+        "Dark premium tones resemble high-end automotive branding",
+        "Blue primary accents communicate trust and technology",
+        "Red performance accent can highlight offers, urgency, and premium sport styling",
+        "Light neutral surfaces preserve readability for product cards and checkout forms"
+      ]
+    },
+    "color_tokens": {
+      "primary": "#2563EB",
+      "primary_shade": "#1D4ED8",
+      "primary_tint": "#DBEAFE",
+      "secondary": "#0F172A",
+      "secondary_shade": "#020617",
+      "secondary_tint": "#1E293B",
+      "tertiary": "#DC2626",
+      "success": "#16A34A",
+      "warning": "#F59E0B",
+      "danger": "#DC2626",
+      "info": "#0EA5E9",
+      "light": "#F8FAFC",
+      "medium": "#64748B",
+      "dark": "#0B1220",
+      "white": "#FFFFFF",
+      "black": "#000000",
+      "border": "#E2E8F0",
+      "divider": "#CBD5E1",
+      "muted_surface": "#F1F5F9",
+      "overlay_dark": "rgba(15, 23, 42, 0.72)"
+    },
+    "backgrounds": {
+      "app_background": "#F5F7FB",
+      "toolbar_background": "#FFFFFF",
+      "card_background": "#FFFFFF",
+      "hero_background": "#0F172A",
+      "footer_background": "#0B1220",
+      "section_alt_background": "#EEF2FF",
+      "checkout_background": "#F8FAFC"
+    },
+    "text_tokens": {
+      "text_primary": "#0F172A",
+      "text_secondary": "#475569",
+      "text_muted": "#94A3B8",
+      "text_inverse": "#FFFFFF",
+      "text_on_primary": "#FFFFFF",
+      "text_on_dark": "#F8FAFC",
+      "price_text": "#DC2626",
+      "success_text": "#166534"
+    },
+    "status_colors": {
+      "in_stock": "#16A34A",
+      "low_stock": "#F59E0B",
+      "sold_out": "#DC2626",
+      "new_arrival": "#2563EB",
+      "featured": "#7C3AED"
+    },
+    "gradients": {
+      "hero_gradient": "linear-gradient(135deg, #020617 0%, #0F172A 35%, #1D4ED8 100%)",
+      "promo_gradient": "linear-gradient(135deg, #111827 0%, #1E293B 55%, #334155 100%)",
+      "cta_gradient": "linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)",
+      "performance_gradient": "linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%)"
+    },
+    "theme_modes": {
+      "default_mode": "light",
+      "supports_dark_mode": true,
+      "dark_mode_tokens": {
+        "background": "#020617",
+        "surface": "#0F172A",
+        "surface_alt": "#1E293B",
+        "text_primary": "#F8FAFC",
+        "text_secondary": "#CBD5E1",
+        "border": "#334155"
+      }
+    },
+    "typography": {
+      "font_family_primary": "Inter, SF Pro Display, Arial, sans-serif",
+      "font_family_headings": "Poppins, Inter, Arial, sans-serif",
+      "font_weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700,
+        "extrabold": 800
+      },
+      "scale": {
+        "display": "32px",
+        "h1": "28px",
+        "h2": "24px",
+        "h3": "20px",
+        "h4": "18px",
+        "body_lg": "16px",
+        "body_md": "14px",
+        "body_sm": "12px",
+        "caption": "11px"
+      },
+      "line_heights": {
+        "tight": 1.2,
+        "normal": 1.5,
+        "relaxed": 1.7
+      }
+    },
+    "spacing_system": {
+      "base_unit": 4,
+      "scale": {
+        "xs": 4,
+        "sm": 8,
+        "md": 12,
+        "lg": 16,
+        "xl": 20,
+        "2xl": 24,
+        "3xl": 32,
+        "4xl": 40
+      }
+    },
+    "radius_system": {
+      "sm": 8,
+      "md": 12,
+      "lg": 16,
+      "xl": 20,
+      "2xl": 24,
+      "pill": 9999
+    },
+    "shadow_system": {
+      "card": "0 8px 24px rgba(15, 23, 42, 0.08)",
+      "floating": "0 16px 40px rgba(15, 23, 42, 0.12)",
+      "button": "0 8px 20px rgba(37, 99, 235, 0.20)",
+      "modal": "0 24px 64px rgba(2, 6, 23, 0.28)"
+    }
+  },
+  "brand_assets": {
+    "logo": {
+      "name": "AUTOSHOWROOM Logo",
+      "style_direction": "minimal, premium, automotive",
+      "concept_options": [
+        "An angular letter A with a road line through the center",
+        "A shield containing a sleek car silhouette",
+        "A monogram A with headlight-inspired wings"
+      ],
+      "usage_locations": [
+        "splash screen",
+        "toolbar / app header",
+        "login page",
+        "about us page",
+        "checkout success page"
+      ]
+    },
+    "iconography": {
+      "style": "outlined Ionicons for utility actions, mixed with filled badges for emphasis",
+      "recommended_icon_set": "Ionicons",
+      "usage_rules": [
+        "Use outline icons for navigation and utility actions",
+        "Use filled badges for offers, featured cars, and status chips",
+        "Keep icon sizes consistent at 20, 24, or 28"
+      ]
+    },
+    "imagery": {
+      "style": "high-resolution automotive photography with wide-angle showroom or road visuals",
+      "image_guidelines": [
+        "Use premium hero car images on home and product pages",
+        "Use consistent aspect ratio for listing cards",
+        "Prefer dark or neutral backgrounds for contrast",
+        "Avoid cluttered compositions"
+      ]
+    }
+  },
+  "information_architecture": {
+    "app_sections": [
+      "Onboarding",
+      "Authentication",
+      "Discovery",
+      "Catalog",
+      "Product Detail",
+      "Cart and Checkout",
+      "User Account",
+      "Informational Pages"
+    ],
+    "navigation_model": {
+      "primary_navigation": "bottom tab navigation after login",
+      "secondary_navigation": "stack navigation with back behavior for details and checkout steps",
+      "recommended_tabs": [
+        "Home",
+        "Shop",
+        "Favorites",
+        "Cart",
+        "Account"
+      ],
+      "global_actions": [
+        "Search",
+        "Notifications",
+        "Filter",
+        "Back",
+        "Open Cart"
+      ]
+    },
+    "page_hierarchy": {
+      "public_pages": [
+        "Splash",
+        "Welcome / Onboarding",
+        "Login",
+        "Register",
+        "Forgot Password",
+        "About Us"
+      ],
+      "authenticated_pages": [
+        "Home",
+        "Shop / Catalog",
+        "Car Details",
+        "Search Results",
+        "Favorites / Wishlist",
+        "Cart",
+        "Checkout",
+        "Order Success",
+        "Checked-Out / Orders",
+        "Profile",
+        "Settings",
+        "Contact / Support"
+      ]
+    }
+  },
+  "required_page_plan": {
+    "minimum_required_by_guideline": 15,
+    "recommended_total_pages": 18,
+    "pages": [
+      {
+        "id": "splash",
+        "name": "Splash Screen",
+        "required_by_guideline": true,
+        "purpose": "Show brand identity and short loading transition",
+        "key_components": [
+          "logo",
+          "brand tagline",
+          "loading indicator",
+          "background gradient"
+        ]
+      },
+      {
+        "id": "onboarding",
+        "name": "Onboarding / Welcome",
+        "required_by_guideline": false,
+        "purpose": "Introduce the app value proposition before login",
+        "key_components": [
+          "intro slides",
+          "car imagery",
+          "skip button",
+          "get started CTA"
+        ]
+      },
+      {
+        "id": "login",
+        "name": "Login",
+        "required_by_guideline": true,
+        "purpose": "Allow demo sign-in for frontend-only flow",
+        "key_components": [
+          "email field",
+          "password field",
+          "remember me",
+          "forgot password",
+          "login button"
+        ]
+      },
+      {
+        "id": "register",
+        "name": "Register",
+        "required_by_guideline": true,
+        "purpose": "Create a local/demo user account",
+        "key_components": [
+          "name",
+          "email",
+          "phone",
+          "password",
+          "confirm password",
+          "register button"
+        ]
+      },
+      {
+        "id": "forgot-password",
+        "name": "Forgot Password",
+        "required_by_guideline": false,
+        "purpose": "Mock reset-password form",
+        "key_components": [
+          "email input",
+          "submit",
+          "success message"
+        ]
+      },
+      {
+        "id": "home",
+        "name": "Home",
+        "required_by_guideline": true,
+        "purpose": "Landing showroom page with featured inventory and promotions",
+        "key_components": [
+          "hero banner",
+          "search bar",
+          "categories",
+          "featured cars",
+          "special offers",
+          "top brands"
+        ]
+      },
+      {
+        "id": "shop",
+        "name": "Shop / Catalog",
+        "required_by_guideline": false,
+        "purpose": "Main browsing page for all available vehicles",
+        "key_components": [
+          "list/grid toggle",
+          "sorting",
+          "filter chips",
+          "product cards",
+          "pagination or infinite scroll"
+        ]
+      },
+      {
+        "id": "search-results",
+        "name": "Search Results",
+        "required_by_guideline": false,
+        "purpose": "Display catalog results filtered by search criteria",
+        "key_components": [
+          "query summary",
+          "active filters",
+          "product results",
+          "empty state"
+        ]
+      },
+      {
+        "id": "car-details",
+        "name": "Car Details / Specifications",
+        "required_by_guideline": false,
+        "purpose": "Detailed product page for a single car",
+        "key_components": [
+          "gallery",
+          "price",
+          "availability",
+          "spec sections",
+          "accordion details",
+          "add to cart",
+          "buy now"
+        ]
+      },
+      {
+        "id": "favorites",
+        "name": "Favorites / Wishlist",
+        "required_by_guideline": false,
+        "purpose": "Save preferred cars for later comparison",
+        "key_components": [
+          "wishlist cards",
+          "remove action",
+          "move to cart"
+        ]
+      },
+      {
+        "id": "cart",
+        "name": "Cart",
+        "required_by_guideline": false,
+        "purpose": "Review selected cars before checkout",
+        "key_components": [
+          "cart items",
+          "price summary",
+          "promo input",
+          "continue checkout CTA"
+        ]
+      },
+      {
+        "id": "checkout",
+        "name": "Checkout",
+        "required_by_guideline": false,
+        "purpose": "Collect buyer details and show final order summary",
+        "key_components": [
+          "customer form",
+          "delivery options",
+          "payment method mock",
+          "terms checkbox",
+          "place order button"
+        ]
+      },
+      {
+        "id": "order-success",
+        "name": "Order Success",
+        "required_by_guideline": false,
+        "purpose": "Confirm successful order placement in demo flow",
+        "key_components": [
+          "success icon",
+          "order number",
+          "summary",
+          "view orders CTA",
+          "back home CTA"
+        ]
+      },
+      {
+        "id": "checked-out",
+        "name": "Checked-Out / My Orders",
+        "required_by_guideline": false,
+        "purpose": "Show previously checked-out or purchased cars",
+        "key_components": [
+          "order cards",
+          "order status",
+          "car summary",
+          "track order mock"
+        ]
+      },
+      {
+        "id": "about",
+        "name": "About Us",
+        "required_by_guideline": true,
+        "purpose": "Present the app, mission, and showroom identity",
+        "key_components": [
+          "brand story",
+          "mission",
+          "vision",
+          "team section",
+          "contact CTA"
+        ]
+      },
+      {
+        "id": "profile",
+        "name": "Profile",
+        "required_by_guideline": false,
+        "purpose": "Display user information and shortcuts",
+        "key_components": [
+          "avatar",
+          "name",
+          "saved addresses mock",
+          "payment methods mock",
+          "orders shortcut"
+        ]
+      },
+      {
+        "id": "settings",
+        "name": "Settings",
+        "required_by_guideline": false,
+        "purpose": "UI settings and preferences",
+        "key_components": [
+          "dark mode",
+          "notifications",
+          "language",
+          "privacy toggles"
+        ]
+      },
+      {
+        "id": "contact-support",
+        "name": "Contact / Support",
+        "required_by_guideline": false,
+        "purpose": "Provide support form and dealership contact information",
+        "key_components": [
+          "contact form",
+          "email",
+          "phone",
+          "faq link",
+          "map placeholder"
+        ]
+      }
+    ]
+  },
+  "feature_modules": {
+    "app_shell": {
+      "responsibilities": [
+        "root routing",
+        "global layout",
+        "tabs shell",
+        "side menu optional",
+        "theme initialization"
+      ]
+    },
+    "auth_module": {
+      "responsibilities": [
+        "login UI",
+        "register UI",
+        "forgot password UI",
+        "mock session state"
+      ],
+      "pages": [
+        "login",
+        "register",
+        "forgot-password"
+      ],
+      "services": [
+        "auth.service.ts",
+        "session.service.ts"
+      ],
+      "guards": [
+        "auth.guard.ts",
+        "guest.guard.ts"
+      ]
+    },
+    "home_module": {
+      "responsibilities": [
+        "hero banners",
+        "featured cars",
+        "category shortcuts",
+        "promotional content"
+      ],
+      "pages": [
+        "home"
+      ],
+      "services": [
+        "home-data.service.ts"
+      ]
+    },
+    "catalog_module": {
+      "responsibilities": [
+        "shop list",
+        "search",
+        "sorting",
+        "filtering",
+        "category browsing"
+      ],
+      "pages": [
+        "shop",
+        "search-results"
+      ],
+      "services": [
+        "catalog.service.ts",
+        "filter.service.ts"
+      ]
+    },
+    "product_module": {
+      "responsibilities": [
+        "car details",
+        "specification rendering",
+        "image gallery",
+        "related items"
+      ],
+      "pages": [
+        "car-details"
+      ],
+      "services": [
+        "product.service.ts"
+      ]
+    },
+    "wishlist_module": {
+      "responsibilities": [
+        "save favorites",
+        "remove favorites",
+        "wishlist local persistence"
+      ],
+      "pages": [
+        "favorites"
+      ],
+      "services": [
+        "wishlist.service.ts"
+      ]
+    },
+    "cart_module": {
+      "responsibilities": [
+        "cart management",
+        "cart total calculations",
+        "mock checkout preparation"
+      ],
+      "pages": [
+        "cart"
+      ],
+      "services": [
+        "cart.service.ts",
+        "pricing.service.ts"
+      ]
+    },
+    "checkout_module": {
+      "responsibilities": [
+        "checkout forms",
+        "shipping or pickup options",
+        "payment selection mock",
+        "place order demo flow"
+      ],
+      "pages": [
+        "checkout",
+        "order-success",
+        "checked-out"
+      ],
+      "services": [
+        "checkout.service.ts",
+        "order.service.ts"
+      ]
+    },
+    "profile_module": {
+      "responsibilities": [
+        "profile display",
+        "settings",
+        "mock preferences"
+      ],
+      "pages": [
+        "profile",
+        "settings"
+      ],
+      "services": [
+        "profile.service.ts",
+        "preferences.service.ts"
+      ]
+    },
+    "info_module": {
+      "responsibilities": [
+        "about us",
+        "contact support",
+        "faq static content"
+      ],
+      "pages": [
+        "about",
+        "contact-support"
+      ],
+      "services": [
+        "support.service.ts"
+      ]
+    },
+    "shared_module_equivalent": {
+      "note": "For latest Angular with standalone components, shared concerns are placed in shared/ rather than using a classic NgModule-heavy SharedModule unless specifically desired.",
+      "contains": [
+        "reusable UI components",
+        "pipes",
+        "directives",
+        "validators",
+        "interfaces",
+        "constants"
+      ]
+    }
+  },
+  "frontend_architecture": {
+    "recommended_architecture_pattern": "Feature-first domain architecture with standalone Angular components and centralized shared utilities",
+    "why_this_architecture": [
+      "Keeps pages, services, and models grouped by feature",
+      "Works well with latest Angular standalone routing",
+      "Scales cleanly from academic prototype to larger app",
+      "Easy for Copilot to generate feature-specific code",
+      "Easy for Figma AI to map screens to feature folders"
+    ],
+    "layers": {
+      "presentation_layer": {
+        "contains": [
+          "pages",
+          "standalone components",
+          "layout shells",
+          "view models",
+          "SCSS styles"
+        ]
+      },
+      "application_layer": {
+        "contains": [
+          "feature services",
+          "state orchestration",
+          "form builders",
+          "route guards",
+          "facades optional"
+        ]
+      },
+      "domain_layer": {
+        "contains": [
+          "interfaces",
+          "types",
+          "entities",
+          "pricing rules",
+          "cart models",
+          "validation rules"
+        ]
+      },
+      "infrastructure_layer": {
+        "contains": [
+          "mock JSON data",
+          "local storage adapters",
+          "theme persistence",
+          "utility helpers"
+        ]
+      }
+    },
+    "routing_strategy": {
+      "type": "lazy loaded feature routes using loadComponent or loadChildren",
+      "root_routes": [
+        "public routes",
+        "tabs shell route",
+        "detail routes",
+        "checkout routes"
+      ],
+      "route_groups": {
+        "public": [
+          "/splash",
+          "/welcome",
+          "/login",
+          "/register",
+          "/forgot-password",
+          "/about"
+        ],
+        "app_shell": [
+          "/tabs/home",
+          "/tabs/shop",
+          "/tabs/favorites",
+          "/tabs/cart",
+          "/tabs/account"
+        ],
+        "detail": [
+          "/car/:id",
+          "/search",
+          "/checkout",
+          "/order-success",
+          "/orders",
+          "/settings",
+          "/support"
+        ]
+      }
+    },
+    "state_management": {
+      "recommended_default": "Angular signals + services",
+      "alternative": "RxJS BehaviorSubject-based services",
+      "avoid_for_now": "Heavy NgRx setup unless required for grading or team scaling",
+      "state_domains": [
+        "session",
+        "catalog filters",
+        "wishlist",
+        "cart",
+        "checkout form",
+        "theme preferences"
+      ]
+    },
+    "data_strategy": {
+      "source": "local mock JSON files or hardcoded TypeScript constants",
+      "mock_entities": [
+        "cars",
+        "brands",
+        "categories",
+        "users",
+        "cart items",
+        "orders",
+        "faq entries"
+      ],
+      "persistence": {
+        "method": "Ionic Storage or browser localStorage",
+        "use_cases": [
+          "keep cart state",
+          "persist wishlist",
+          "save theme mode",
+          "remember onboarding completion"
+        ]
+      }
+    }
+  },
+  "file_structure": {
+    "recommended_structure": {
+      "src/": {
+        "app/": {
+          "core/": {
+            "guards/": [
+              "auth.guard.ts",
+              "guest.guard.ts"
+            ],
+            "interceptors/": [
+              "optional for future API mode"
+            ],
+            "services/": [
+              "app-init.service.ts",
+              "storage.service.ts",
+              "theme.service.ts"
+            ],
+            "models/": [
+              "api-response.model.ts"
+            ],
+            "constants/": [
+              "routes.constants.ts",
+              "app.constants.ts"
+            ]
+          },
+          "shared/": {
+            "components/": [
+              "app-header/",
+              "car-card/",
+              "price-tag/",
+              "empty-state/",
+              "search-bar/",
+              "section-title/",
+              "filter-chip-group/",
+              "quantity-stepper/",
+              "order-summary-card/"
+            ],
+            "directives/": [
+              "img-fallback.directive.ts",
+              "autofocus.directive.ts"
+            ],
+            "pipes/": [
+              "currency-format.pipe.ts",
+              "truncate.pipe.ts",
+              "spec-label.pipe.ts"
+            ],
+            "validators/": [
+              "password-match.validator.ts",
+              "phone.validator.ts"
+            ],
+            "interfaces/": [
+              "car.interface.ts",
+              "brand.interface.ts",
+              "cart-item.interface.ts",
+              "order.interface.ts",
+              "user.interface.ts"
+            ],
+            "utils/": [
+              "price.utils.ts",
+              "filter.utils.ts",
+              "form.utils.ts"
+            ]
+          },
+          "features/": {
+            "splash/": {
+              "pages/": [
+                "splash.page.ts",
+                "splash.page.html",
+                "splash.page.scss"
+              ]
+            },
+            "onboarding/": {
+              "pages/": [
+                "onboarding.page.ts",
+                "onboarding.page.html",
+                "onboarding.page.scss"
+              ]
+            },
+            "auth/": {
+              "pages/": [
+                "login.page.ts",
+                "register.page.ts",
+                "forgot-password.page.ts"
+              ],
+              "services/": [
+                "auth.service.ts",
+                "session.service.ts"
+              ],
+              "models/": [
+                "auth-form.model.ts"
+              ]
+            },
+            "home/": {
+              "pages/": [
+                "home.page.ts",
+                "home.page.html",
+                "home.page.scss"
+              ],
+              "services/": [
+                "home-data.service.ts"
+              ]
+            },
+            "catalog/": {
+              "pages/": [
+                "shop.page.ts",
+                "search-results.page.ts"
+              ],
+              "components/": [
+                "catalog-filters/",
+                "catalog-sort-sheet/"
+              ],
+              "services/": [
+                "catalog.service.ts",
+                "filter.service.ts"
+              ],
+              "models/": [
+                "catalog-filter.model.ts"
+              ]
+            },
+            "product/": {
+              "pages/": [
+                "car-details.page.ts",
+                "compare.page.ts"
+              ],
+              "components/": [
+                "spec-grid/",
+                "car-gallery/",
+                "feature-badges/"
+              ],
+              "services/": [
+                "product.service.ts"
+              ]
+            },
+            "wishlist/": {
+              "pages/": [
+                "favorites.page.ts"
+              ],
+              "services/": [
+                "wishlist.service.ts"
+              ]
+            },
+            "cart/": {
+              "pages/": [
+                "cart.page.ts"
+              ],
+              "services/": [
+                "cart.service.ts",
+                "pricing.service.ts"
+              ]
+            },
+            "checkout/": {
+              "pages/": [
+                "checkout.page.ts",
+                "order-success.page.ts",
+                "checked-out.page.ts"
+              ],
+              "components/": [
+                "payment-method-selector/",
+                "delivery-options/"
+              ],
+              "services/": [
+                "checkout.service.ts",
+                "order.service.ts"
+              ]
+            },
+            "account/": {
+              "pages/": [
+                "profile.page.ts",
+                "settings.page.ts"
+              ],
+              "services/": [
+                "profile.service.ts",
+                "preferences.service.ts"
+              ]
+            },
+            "info/": {
+              "pages/": [
+                "about.page.ts",
+                "contact-support.page.ts"
+              ],
+              "services/": [
+                "support.service.ts"
+              ]
+            }
+          },
+          "tabs/": {
+            "tabs.page.ts": "bottom tabs shell",
+            "tabs.routes.ts": "child routes for app sections"
+          },
+          "app.component.ts": "root component",
+          "app.routes.ts": "top-level routes",
+          "app.config.ts": "providers and ionic config"
+        },
+        "assets/": {
+          "images/": {
+            "cars/": [],
+            "brands/": [],
+            "banners/": [],
+            "logos/": []
+          },
+          "icons/": {},
+          "mock-data/": {
+            "cars.json": "catalog source",
+            "brands.json": "brand source",
+            "categories.json": "catalog taxonomy",
+            "orders.json": "mock purchased items",
+            "faq.json": "support content"
+          }
+        },
+        "theme/": {
+          "variables.scss": "Ionic CSS variables",
+          "tokens.scss": "custom token map",
+          "mixins.scss": "shared SCSS helpers"
+        },
+        "environments/": {
+          "environment.ts": "frontend environment config",
+          "environment.prod.ts": "production frontend config"
+        },
+        "global.scss": "global styles and utility classes",
+        "main.ts": "bootstrap entry point",
+        "index.html": "host page"
+      }
+    },
+    "naming_conventions": {
+      "files": "kebab-case",
+      "interfaces": "PascalCase with Interface suffix optional",
+      "components": "feature-oriented naming",
+      "routes": "lowercase path names",
+      "services": "noun.service.ts",
+      "pages": "name.page.ts"
+    }
+  },
+  "route_map": {
+    "public_routes": [
+      {
+        "path": "",
+        "redirectTo": "splash"
+      },
+      {
+        "path": "splash",
+        "page": "SplashPage"
+      },
+      {
+        "path": "welcome",
+        "page": "OnboardingPage"
+      },
+      {
+        "path": "login",
+        "page": "LoginPage"
+      },
+      {
+        "path": "register",
+        "page": "RegisterPage"
+      },
+      {
+        "path": "forgot-password",
+        "page": "ForgotPasswordPage"
+      },
+      {
+        "path": "about",
+        "page": "AboutPage"
+      }
+    ],
+    "protected_routes": [
+      {
+        "path": "tabs",
+        "page": "TabsPage",
+        "children": [
+          {
+            "path": "home",
+            "page": "HomePage"
+          },
+          {
+            "path": "shop",
+            "page": "ShopPage"
+          },
+          {
+            "path": "favorites",
+            "page": "FavoritesPage"
+          },
+          {
+            "path": "cart",
+            "page": "CartPage"
+          },
+          {
+            "path": "account",
+            "page": "ProfilePage"
+          }
+        ]
+      },
+      {
+        "path": "car/:id",
+        "page": "CarDetailsPage"
+      },
+      {
+        "path": "search",
+        "page": "SearchResultsPage"
+      },
+      {
+        "path": "checkout",
+        "page": "CheckoutPage"
+      },
+      {
+        "path": "order-success",
+        "page": "OrderSuccessPage"
+      },
+      {
+        "path": "orders",
+        "page": "CheckedOutPage"
+      },
+      {
+        "path": "settings",
+        "page": "SettingsPage"
+      },
+      {
+        "path": "support",
+        "page": "ContactSupportPage"
+      }
+    ]
+  },
+  "data_models": {
+    "Car": {
+      "id": "string",
+      "slug": "string",
+      "brand": "string",
+      "model": "string",
+      "year": "number",
+      "category": "string",
+      "bodyType": "string",
+      "transmission": "string",
+      "fuelType": "string",
+      "drivetrain": "string",
+      "engine": "string",
+      "horsepower": "number",
+      "torque": "string",
+      "rangeKm": "number | null",
+      "topSpeedKph": "number | null",
+      "zeroToHundred": "string | null",
+      "seats": "number",
+      "doors": "number",
+      "colorOptions": [
+        "string"
+      ],
+      "price": "number",
+      "currency": "string",
+      "stockStatus": "in-stock | low-stock | sold-out | pre-order",
+      "featured": "boolean",
+      "rating": "number",
+      "reviewCount": "number",
+      "thumbnail": "string",
+      "gallery": [
+        "string"
+      ],
+      "shortDescription": "string",
+      "longDescription": "string",
+      "specifications": {
+        "dimensions": {
+          "lengthMm": "number",
+          "widthMm": "number",
+          "heightMm": "number",
+          "wheelbaseMm": "number",
+          "groundClearanceMm": "number"
+        },
+        "performance": {
+          "horsepower": "number",
+          "torque": "string",
+          "topSpeedKph": "number",
+          "accelerationZeroToHundred": "string"
+        },
+        "efficiency": {
+          "fuelConsumption": "string",
+          "batteryCapacity": "string | null",
+          "rangeKm": "number | null"
+        },
+        "safety": [
+          "string"
+        ],
+        "comfort": [
+          "string"
+        ],
+        "technology": [
+          "string"
+        ]
+      }
+    },
+    "User": {
+      "id": "string",
+      "fullName": "string",
+      "email": "string",
+      "phone": "string",
+      "avatar": "string | null",
+      "savedAddresses": [
+        "Address"
+      ],
+      "paymentMethods": [
+        "PaymentMethod"
+      ]
+    },
+    "Address": {
+      "id": "string",
+      "label": "string",
+      "fullAddress": "string",
+      "city": "string",
+      "postalCode": "string",
+      "country": "string"
+    },
+    "CartItem": {
+      "id": "string",
+      "carId": "string",
+      "title": "string",
+      "price": "number",
+      "quantity": "number",
+      "thumbnail": "string",
+      "selectedColor": "string | null"
+    },
+    "Order": {
+      "id": "string",
+      "userId": "string",
+      "items": [
+        "CartItem"
+      ],
+      "subtotal": "number",
+      "discount": "number",
+      "deliveryFee": "number",
+      "total": "number",
+      "status": "processing | confirmed | shipped | delivered",
+      "paymentMethod": "string",
+      "createdAt": "string"
+    }
+  },
+  "screen_specs": {
+    "home_page": {
+      "layout": [
+        "top app bar",
+        "greeting and profile shortcut",
+        "search input",
+        "hero banner carousel",
+        "category chips",
+        "featured cars horizontal cards",
+        "top brands row",
+        "promo banner",
+        "new arrivals grid"
+      ],
+      "cta_priority": [
+        "Browse Cars",
+        "View Details",
+        "Add to Favorites",
+        "See All"
+      ]
+    },
+    "shop_page": {
+      "layout": [
+        "search header",
+        "filter and sort controls",
+        "vehicle card list/grid",
+        "sticky cart shortcut"
+      ],
+      "filter_options": [
+        "brand",
+        "price range",
+        "year",
+        "fuel type",
+        "transmission",
+        "body type",
+        "seating capacity",
+        "availability"
+      ]
+    },
+    "car_details_page": {
+      "layout": [
+        "image carousel",
+        "car title and brand",
+        "rating and review count",
+        "price section",
+        "availability badge",
+        "key highlights",
+        "full specifications accordion",
+        "related cars",
+        "add to cart and buy now CTA area"
+      ],
+      "primary_actions": [
+        "Add to Cart",
+        "Buy Now",
+        "Add to Wishlist",
+        "Compare"
+      ]
+    },
+    "cart_page": {
+      "layout": [
+        "cart items list",
+        "remove/edit actions",
+        "promo code input",
+        "subtotal block",
+        "continue to checkout button"
+      ]
+    },
+    "checkout_page": {
+      "sections": [
+        "buyer information",
+        "address / pickup details",
+        "payment method mock",
+        "terms and conditions",
+        "order summary",
+        "place order CTA"
+      ]
+    },
+    "checked_out_page": {
+      "layout": [
+        "orders header",
+        "status tabs",
+        "purchased car cards",
+        "order detail drawer or summary card"
+      ]
+    }
+  },
+  "ui_components": {
+    "global_components": [
+      "AppHeaderComponent",
+      "BottomTabsComponent",
+      "CarCardComponent",
+      "FeaturedBannerComponent",
+      "SearchBarComponent",
+      "FilterChipComponent",
+      "EmptyStateComponent",
+      "PriceSummaryComponent",
+      "SpecGridComponent",
+      "OrderSummaryCardComponent",
+      "BadgePillComponent",
+      "SectionTitleComponent"
+    ],
+    "component_contract_examples": {
+      "CarCardComponent": {
+        "inputs": [
+          "car",
+          "showFavoriteButton",
+          "showAddToCartButton",
+          "layoutType"
+        ],
+        "outputs": [
+          "viewDetails",
+          "toggleFavorite",
+          "addToCart"
+        ]
+      },
+      "SearchBarComponent": {
+        "inputs": [
+          "placeholder",
+          "value",
+          "showFilterButton"
+        ],
+        "outputs": [
+          "valueChange",
+          "submit",
+          "filterClick"
+        ]
+      }
+    }
+  },
+  "forms_and_validation": {
+    "login_form": {
+      "fields": [
+        "email",
+        "password"
+      ],
+      "validators": {
+        "email": [
+          "required",
+          "email"
+        ],
+        "password": [
+          "required",
+          "minLength: 8"
+        ]
+      }
+    },
+    "register_form": {
+      "fields": [
+        "fullName",
+        "email",
+        "phone",
+        "password",
+        "confirmPassword"
+      ],
+      "validators": {
+        "fullName": [
+          "required",
+          "minLength: 2"
+        ],
+        "email": [
+          "required",
+          "email"
+        ],
+        "phone": [
+          "required",
+          "pattern: local or international mobile format"
+        ],
+        "password": [
+          "required",
+          "minLength: 8",
+          "must contain letters and numbers"
+        ],
+        "confirmPassword": [
+          "required",
+          "must match password"
+        ]
+      }
+    },
+    "checkout_form": {
+      "fields": [
+        "fullName",
+        "email",
+        "phone",
+        "address",
+        "city",
+        "postalCode",
+        "paymentMethod",
+        "agreeToTerms"
+      ],
+      "validators": {
+        "fullName": [
+          "required"
+        ],
+        "email": [
+          "required",
+          "email"
+        ],
+        "phone": [
+          "required"
+        ],
+        "address": [
+          "required"
+        ],
+        "city": [
+          "required"
+        ],
+        "postalCode": [
+          "required"
+        ],
+        "paymentMethod": [
+          "required"
+        ],
+        "agreeToTerms": [
+          "requiredTrue"
+        ]
+      }
+    },
+    "validation_ux_rules": [
+      "Show inline errors only after touch or submit",
+      "Use concise human-readable messages",
+      "Highlight invalid fields with danger color",
+      "Disable CTA until critical validation passes when appropriate"
+    ]
+  },
+  "mock_content_strategy": {
+    "catalog_seed_data": {
+      "brands": [
+        "Tesla",
+        "BMW",
+        "Mercedes-Benz",
+        "Toyota",
+        "Honda",
+        "Hyundai",
+        "Kia",
+        "Ford",
+        "Mazda",
+        "Nissan"
+      ],
+      "categories": [
+        "Sedan",
+        "SUV",
+        "Pickup",
+        "Electric",
+        "Luxury",
+        "Sports",
+        "Family"
+      ],
+      "sample_listing_count": 12,
+      "featured_count": 4,
+      "new_arrivals_count": 6
+    },
+    "mock_order_flow": {
+      "session_user": "local demo user",
+      "cart_storage": "localStorage",
+      "orders_storage": "localStorage",
+      "payment_methods": [
+        "Cash on Delivery (mock)",
+        "Credit Card (mock)",
+        "Bank Transfer (mock)"
+      ]
+    }
+  },
+  "ux_guidelines": {
+    "principles": [
+      "Keep the interface premium and uncluttered",
+      "Favor large visuals and strong hierarchy",
+      "Use clear buttons and obvious conversion paths",
+      "Ensure every key page has a primary CTA",
+      "Reduce form friction with sensible defaults"
+    ],
+    "mobile_patterns": [
+      "sticky bottom CTA on detail and checkout screens",
+      "bottom tabs for primary sections",
+      "cards for product browsing",
+      "chips for filters",
+      "accordions for long specifications"
+    ],
+    "microinteractions": [
+      "heart animation when adding to favorites",
+      "button ripple on add to cart",
+      "skeleton loaders during mock fetch delay",
+      "success animation on order completion"
+    ],
+    "empty_states": [
+      "empty cart",
+      "empty favorites",
+      "no search results",
+      "no past orders"
+    ]
+  },
+  "accessibility": {
+    "requirements": [
+      "minimum color contrast for text",
+      "touch targets at least 44x44",
+      "descriptive alt text for images",
+      "semantic headings",
+      "visible focus states",
+      "form labels bound to inputs"
+    ],
+    "screen_reader_notes": [
+      "Announce cart item count changes",
+      "Add aria labels for icon-only buttons",
+      "Use readable success and error messages"
+    ]
+  },
+  "performance_guidelines": {
+    "frontend_only_best_practices": [
+      "lazy load routes",
+      "compress images",
+      "reuse shared card components",
+      "avoid over-nesting layout containers",
+      "cache mock data in memory",
+      "use trackBy in ngFor for list rendering"
+    ]
+  },
+  "ionic_specific_configuration": {
+    "platform_behavior": {
+      "mode": "ios or md depending on preferred look; recommended: md for consistent premium modern style",
+      "animated": true,
+      "rippleEffect": true
+    },
+    "recommended_ionic_components": [
+      "ion-app",
+      "ion-router-outlet",
+      "ion-tabs",
+      "ion-tab-bar",
+      "ion-tab-button",
+      "ion-header",
+      "ion-toolbar",
+      "ion-content",
+      "ion-card",
+      "ion-grid",
+      "ion-row",
+      "ion-col",
+      "ion-input",
+      "ion-searchbar",
+      "ion-button",
+      "ion-segment",
+      "ion-chip",
+      "ion-badge",
+      "ion-list",
+      "ion-item",
+      "ion-modal",
+      "ion-accordion-group",
+      "ion-toast",
+      "ion-alert",
+      "ion-skeleton-text"
+    ]
+  },
+  "copilot_prompt_hints": {
+    "build_order": [
+      "Create Angular Ionic app shell",
+      "Set up theme variables and global styles",
+      "Create standalone route structure",
+      "Implement mock data models",
+      "Build shared card and header components",
+      "Implement authentication screens",
+      "Build home and catalog pages",
+      "Build car details page",
+      "Build wishlist, cart, and checkout pages",
+      "Add local storage persistence",
+      "Polish responsive and accessibility states"
+    ],
+    "coding_preferences": [
+      "Use standalone components",
+      "Use strong typing for models",
+      "Use Angular reactive forms for auth and checkout",
+      "Use signals or service-based local state",
+      "Keep SCSS modular and token-based"
+    ]
+  },
+  "figma_ai_prompt_hints": {
+    "art_direction_keywords": [
+      "premium automotive ecommerce",
+      "modern dark luxury UI",
+      "clean cards",
+      "electric blue accents",
+      "minimal clutter",
+      "high-contrast hero banners",
+      "mobile-first"
+    ],
+    "component_library_targets": [
+      "buttons",
+      "inputs",
+      "chips",
+      "cards",
+      "badges",
+      "tabs",
+      "top bars",
+      "bottom nav",
+      "spec tables",
+      "checkout summary cards"
+    ],
+    "screen_generation_priority": [
+      "Splash",
+      "Login",
+      "Register",
+      "Home",
+      "Shop",
+      "Car Details",
+      "Cart",
+      "Checkout",
+      "Checked-Out",
+      "Profile",
+      "About Us"
+    ]
+  },
+  "delivery_checklist": {
+    "must_have": [
+      "at least 15 pages",
+      "Ionic Angular implementation",
+      "Home page",
+      "Login page",
+      "Register page",
+      "About Us page",
+      "Splash screen",
+      "car details/specification page",
+      "checked-out/orders page",
+      "checkout flow",
+      "clear documentation"
+    ],
+    "nice_to_have": [
+      "search and filter",
+      "wishlist",
+      "dark mode",
+      "mock promotions",
+      "animations",
+      "skeleton loaders",
+      "contact support"
+    ]
+  },
+  "starter_dependencies": {
+    "angular": "^21.0.0",
+    "ionic_angular": "^8.0.0",
+    "rxjs": "^7.8.0",
+    "typescript": "compatible with Angular 21 release requirements",
+    "optional_helpers": [
+      "@ionic/storage-angular",
+      "swiper",
+      "dayjs"
+    ]
+  },
+  "notes_for_implementation": {
+    "frontend_only_notice": "All authentication, cart, checkout, and order flows are mock/demo flows only and should use local state or local storage.",
+    "academic_project_notice": "The attached project guideline requires Ionic Angular, common mobile pages, intuitive design, documentation, and avoidance of backend/database technologies.",
+    "recommended_scope": "Build the 18-page design system and implement the core 10 to 12 screens first if time is limited, then complete the remaining informational screens."
+  }
+}
