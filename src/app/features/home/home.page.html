@@ -1,75 +1,113 @@
-<ion-content class="home-content">
-  <!-- Hero Section -->
-  <div class="hero-section">
-    <div class="hero-content">
-      <h1 class="hero-title">Find Your Dream Car</h1>
-      <p class="hero-subtitle">Premium vehicles at competitive prices</p>
-      <ion-button
-        expand="block"
-        color="light"
-        class="hero-cta"
-        (click)="onSearch()"
-      >
-        <ion-icon name="search-outline" slot="start"></ion-icon>
-        Search Cars
-      </ion-button>
-    </div>
-  </div>
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="home-shell">
+    <section class="hero-section">
+      <div class="hero-overlay"></div>
 
-  <!-- Search Bar -->
-  <div class="search-section">
-    <ion-searchbar
-      placeholder="Search for cars, brands, models..."
-      (ionInput)="onSearch()"
-      class="main-search"
-    ></ion-searchbar>
-  </div>
+      <div class="hero-content">
+        <p class="hero-eyebrow">Premium Auto Marketplace</p>
+        <h1 class="hero-title">Find Your Dream Car</h1>
+        <p class="hero-subtitle">
+          Explore premium vehicles, compare specs, save your favorites, and shop with confidence.
+        </p>
 
-  <!-- Categories -->
-  <div class="categories-section">
-    <h2 class="section-title">Browse by Category</h2>
-    <div class="categories-grid">
-      <ion-card
-        *ngFor="let category of categories"
-        class="category-card"
-        (click)="onCategorySelect(category)"
-      >
-        <ion-card-content class="category-content">
-          <ion-icon [name]="category.icon" class="category-icon"></ion-icon>
-          <h3 class="category-name">{{ category.name }}</h3>
-          <p class="category-count">{{ category.count }} cars</p>
-        </ion-card-content>
-      </ion-card>
-    </div>
-  </div>
+        <div class="hero-actions">
+          <ion-button expand="block" color="light" class="hero-cta" (click)="onSearch()">
+            <ion-icon name="search-outline" slot="start"></ion-icon>
+            Search Cars
+          </ion-button>
 
-  <!-- Featured Cars -->
-  <div class="featured-section">
-    <div class="section-header">
-      <h2 class="section-title">Featured Cars</h2>
-      <ion-button fill="clear" routerLink="/tabs/shop" class="see-all-btn">
-        See All
-      </ion-button>
-    </div>
-    <div class="cars-grid">
-      <app-car-card
-        *ngFor="let car of featuredCars"
-        [car]="car"
-        (viewDetails)="onViewCarDetails($event)"
-        (toggleFavorite)="onToggleFavorite($event)"
-        (addToCart)="onAddToCart($event)"
-      ></app-car-card>
-    </div>
-  </div>
+          <ion-button expand="block" fill="outline" class="hero-secondary" (click)="goToShop()">
+            Browse Shop
+          </ion-button>
+        </div>
 
-  <!-- Top Brands -->
-  <div class="brands-section">
-    <h2 class="section-title">Top Brands</h2>
-    <div class="brands-list">
-      <div class="brand-item" *ngFor="let brand of ['Tesla', 'BMW', 'Mercedes', 'Toyota']">
-        <div class="brand-logo">{{ brand.charAt(0) }}</div>
-        <span class="brand-name">{{ brand }}</span>
+        <div class="hero-quick-links">
+          <ion-button fill="clear" (click)="goToFavorites()">Favorites</ion-button>
+          <ion-button fill="clear" (click)="goToCart()">Cart</ion-button>
+        </div>
       </div>
-    </div>
+    </section>
+
+    <section class="search-section">
+      <div class="search-card">
+        <div class="search-copy">
+          <h3>Search for cars</h3>
+          <p>Find by brand, model, or category.</p>
+        </div>
+
+        <ion-searchbar
+          [(ngModel)]="searchQuery"
+          placeholder="Search for cars, brands, models..."
+          (ionInput)="onSearchInput($event)"
+          (keyup.enter)="onSearch()"
+          class="main-search"
+        ></ion-searchbar>
+
+        <ion-button class="search-btn" (click)="onSearch()">
+          <ion-icon name="search-outline" slot="start"></ion-icon>
+          Search
+        </ion-button>
+      </div>
+    </section>
+
+    <section class="featured-section">
+      <div class="section-header">
+        <div>
+          <p class="section-eyebrow">Top Picks</p>
+          <h2 class="section-title">Featured Cars</h2>
+        </div>
+
+        <ion-button fill="clear" class="see-all-btn" (click)="goToShop()">
+          See All
+        </ion-button>
+      </div>
+
+      <div class="cars-grid">
+        <app-car-card
+  [car]="car"
+  (viewDetails)="onViewCarDetails($event)"
+  (toggleFavorite)="onToggleFavorite($event)"
+  (addToCart)="onAddToCart($event)"
+></app-car-card>
+      </div>
+    </section>
+
+    <section class="brands-section">
+      <div class="section-header">
+        <div>
+          <p class="section-eyebrow">Trusted Makers</p>
+          <h2 class="section-title">Top Brands</h2>
+        </div>
+      </div>
+
+      <div class="brands-list">
+        <button
+          type="button"
+          class="brand-item"
+          *ngFor="let brand of topBrands"
+          (click)="onBrandSelect(brand)"
+        >
+          <div class="brand-logo">{{ brand.name.charAt(0) }}</div>
+          <span class="brand-name">{{ brand.name }}</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="quick-actions-section">
+      <div class="quick-card" (click)="goToShop()">
+        <h3>Browse All Cars</h3>
+        <p>Explore the full collection.</p>
+      </div>
+
+      <div class="quick-card" (click)="goToFavorites()">
+        <h3>My Favorites</h3>
+        <p>See your saved shortlist.</p>
+      </div>
+
+      <div class="quick-card" (click)="goToCart()">
+        <h3>My Cart</h3>
+        <p>Review items before checkout.</p>
+      </div>
+    </section>
   </div>
 </ion-content>

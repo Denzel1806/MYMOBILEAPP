@@ -256,8 +256,8 @@ export class SearchResultsPage implements OnInit {
   }
 
   onCarClick(car: Car) {
-    this.router.navigate(['/car', car.id]);
-  }
+  this.router.navigate(['/car', car.id]);
+}
 
   clearSearch() {
     this.searchQuery = '';

@@ -1,122 +1,142 @@
 .car-card {
-  margin: 0;
-  border-radius: var(--radius-lg);
+  border-radius: 24px;
   overflow: hidden;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  background: #fff;
+  cursor: pointer;
+}
 
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--floating-shadow);
-  }
+.car-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
 
-  .car-image-container {
-    position: relative;
-    height: 200px;
-    overflow: hidden;
+.car-image-container {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
 
-    .car-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.car-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background: #e5e7eb;
+}
 
-    .featured-badge {
-      position: absolute;
-      top: var(--spacing-sm);
-      left: var(--spacing-sm);
-      font-size: var(--text-caption);
-    }
+.featured-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
 
-    .favorite-btn {
-      position: absolute;
-      top: var(--spacing-sm);
-      right: var(--spacing-sm);
-      --color: var(--ion-color-danger);
-      --background: rgba(255, 255, 255, 0.9);
-      --border-radius: 50%;
-      width: 40px;
-      height: 40px;
-    }
-  }
+.stock-badge {
+  position: absolute;
+  top: 12px;
+  right: 58px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
 
-  ion-card-header {
-    padding: var(--spacing-md);
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  --background: rgba(255, 255, 255, 0.92);
+  --border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
 
-    .car-title {
-      font-size: var(--text-h4);
-      font-weight: var(--font-weight-semibold);
-      color: var(--text-primary);
-      margin-bottom: var(--spacing-xs);
-    }
+.car-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: #0f172a;
+}
 
-    .car-subtitle {
-      font-size: var(--text-body-sm);
-      color: var(--text-secondary);
-    }
-  }
+.car-subtitle {
+  color: #64748b;
+  font-size: 14px;
+}
 
-  ion-card-content {
-    padding: var(--spacing-md);
+.car-details {
+  display: grid;
+  gap: 12px;
+}
 
-    .car-details {
-      .price-section {
-        margin-bottom: var(--spacing-md);
+.price-section {
+  display: flex;
+  align-items: end;
+  gap: 6px;
+}
 
-        .price {
-          font-size: var(--text-h3);
-          font-weight: var(--font-weight-bold);
-          color: var(--price-text);
-        }
+.price {
+  font-size: 24px;
+  font-weight: 800;
+  color: #0f172a;
+}
 
-        .currency {
-          font-size: var(--text-body-sm);
-          color: var(--text-secondary);
-          margin-left: var(--spacing-xs);
-        }
-      }
+.currency {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 3px;
+}
 
-      .specs-preview {
-        display: flex;
-        gap: var(--spacing-sm);
-        margin-bottom: var(--spacing-md);
+.specs-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-        .spec {
-          font-size: var(--text-body-sm);
-          color: var(--text-muted);
-          background: var(--muted-surface);
-          padding: var(--spacing-xs) var(--spacing-sm);
-          border-radius: var(--radius-sm);
-        }
-      }
+.spec {
+  font-size: 12px;
+  font-weight: 600;
+  color: #334155;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 999px;
+  padding: 6px 10px;
+}
 
-      .rating-section {
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-xs);
-        margin-bottom: var(--spacing-md);
+.rating-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+  font-size: 14px;
+}
 
-        ion-icon {
-          font-size: var(--text-body-sm);
-        }
+.rating {
+  font-weight: 700;
+  color: #0f172a;
+}
 
-        .rating {
-          font-size: var(--text-body-sm);
-          font-weight: var(--font-weight-medium);
-          color: var(--text-primary);
-        }
+.reviews {
+  color: #64748b;
+}
 
-        .reviews {
-          font-size: var(--text-body-sm);
-          color: var(--text-muted);
-        }
-      }
-    }
+.short-description {
+  margin: 0;
+  color: #64748b;
+  line-height: 1.5;
+  font-size: 14px;
+}
 
-    .card-actions {
-      ion-button {
-        --border-radius: var(--radius-md);
-        font-weight: var(--font-weight-semibold);
-      }
-    }
-  }
+.card-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.details-btn,
+.cart-btn {
+  --border-radius: 16px;
+  min-height: 46px;
+  font-weight: 700;
 }

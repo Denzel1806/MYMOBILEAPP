@@ -93,11 +93,11 @@ import { StorageService } from '../../../core/services/storage.service';
             <ion-row>
               <ion-col size="12" size-md="6" size-lg="4" *ngFor="let car of filteredCars">
                 <app-car-card
-                  [car]="car"
-                  (viewDetails)="onViewCarDetails($event)"
-                  (toggleFavorite)="onToggleFavorite($event)"
-                  (addToCart)="onAddToCart($event)"
-                ></app-car-card>
+  [car]="car"
+  (viewDetails)="onViewCarDetails($event)"
+  (toggleFavorite)="onToggleFavorite($event)"
+  (addToCart)="onAddToCart($event)"
+></app-car-card>
               </ion-col>
             </ion-row>
           </ion-grid>
@@ -234,9 +234,9 @@ export class ShopPage implements OnInit {
     this.applySorting();
   }
 
-  onViewCarDetails(car: Car) {
-    this.router.navigate(['/car', car.id]);
-  }
+ onViewCarDetails(car: Car) {
+  this.router.navigate(['/car', car.id]);
+}
 
   async onToggleFavorite(car: Car) {
     try {
