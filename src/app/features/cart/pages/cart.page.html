@@ -16,7 +16,7 @@
     <div class="cart-items" *ngIf="!isLoading && cartItems.length > 0">
       <div class="cart-item" *ngFor="let item of cartItems">
         <div class="item-image">
-          <img [src]="item.car.thumbnail" [alt]="item.car.brand + ' ' + item.car.model" />
+          <img src="https://i.pinimg.com/736x/c7/22/b7/c722b70cedb8637dbb83ca822c79a23b.jpg" [alt]="item.car.brand + ' ' + item.car.model" />
         </div>
         <div class="item-details">
           <h3 class="item-title">{{ item.car.brand }} {{ item.car.model }}</h3>
