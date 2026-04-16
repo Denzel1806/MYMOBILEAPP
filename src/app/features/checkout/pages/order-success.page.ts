@@ -25,6 +25,9 @@ import {
   homeOutline,
   bagOutline,
   shareOutline,
+  mailOutline,
+  carOutline,
+  locationOutline,
 } from 'ionicons/icons';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StorageService } from '../../../core/services/storage.service';
@@ -41,7 +44,6 @@ import { Order } from '../../../shared/interfaces/order.interface';
 
     <ion-content [fullscreen]="true">
       <div class="order-success-content">
-        <!-- Success Message -->
         <div class="success-section">
           <div class="success-icon">
             <ion-icon name="checkmark-circle-outline" size="large"></ion-icon>
@@ -56,7 +58,6 @@ import { Order } from '../../../shared/interfaces/order.interface';
           </div>
         </div>
 
-        <!-- Order Details -->
         <div class="order-details-section" *ngIf="order">
           <h3>Order Summary</h3>
 
@@ -67,7 +68,9 @@ import { Order } from '../../../shared/interfaces/order.interface';
               </div>
               <div class="order-item-details">
                 <h4>{{ item.car.brand }} {{ item.car.model }}</h4>
-                <p class="item-specs">{{ item.car.year }} • {{ item.car.rangeKm || 0 | number }} km range</p>
+                <p class="item-specs">
+                  {{ item.car.year }} • {{ item.car.rangeKm || 0 | number }} km range
+                </p>
                 <p class="item-quantity">Quantity: {{ item.quantity }}</p>
               </div>
               <div class="item-price">
@@ -96,7 +99,6 @@ import { Order } from '../../../shared/interfaces/order.interface';
           </div>
         </div>
 
-        <!-- Shipping Information -->
         <div class="shipping-info-section" *ngIf="order">
           <h3>Shipping Information</h3>
           <div class="info-card">
@@ -115,14 +117,13 @@ import { Order } from '../../../shared/interfaces/order.interface';
             <div class="info-row">
               <span class="label">Address:</span>
               <span class="value">
-                {{ order.shippingInfo.address }}<br>
+                {{ order.shippingInfo.address }}<br />
                 {{ order.shippingInfo.city }}, {{ order.shippingInfo.state }} {{ order.shippingInfo.zipCode }}
               </span>
             </div>
           </div>
         </div>
 
-        <!-- What's Next -->
         <div class="next-steps-section">
           <h3>What's Next?</h3>
           <div class="steps-list">
@@ -135,15 +136,17 @@ import { Order } from '../../../shared/interfaces/order.interface';
                 <p>You'll receive an email confirmation with your order details.</p>
               </div>
             </div>
+
             <div class="step">
               <div class="step-icon">
                 <ion-icon name="car-outline"></ion-icon>
               </div>
               <div class="step-content">
                 <h4>Processing</h4>
-                <p>We'll prepare your vehicle for delivery within 2-3 business days.</p>
+                <p>We'll prepare your vehicle for delivery within 2–3 business days.</p>
               </div>
             </div>
+
             <div class="step">
               <div class="step-icon">
                 <ion-icon name="location-outline"></ion-icon>
@@ -156,7 +159,6 @@ import { Order } from '../../../shared/interfaces/order.interface';
           </div>
         </div>
 
-        <!-- Action Buttons -->
         <div class="action-buttons">
           <ion-button
             expand="block"
@@ -227,6 +229,9 @@ export class OrderSuccessPage implements OnInit {
       homeOutline,
       bagOutline,
       shareOutline,
+      mailOutline,
+      carOutline,
+      locationOutline,
     });
   }
 
@@ -249,9 +254,10 @@ export class OrderSuccessPage implements OnInit {
   async shareOrder() {
     if (!this.order) return;
 
+    const shareText = `I just ordered a ${this.order.items[0]?.car.brand} ${this.order.items[0]?.car.model} from AUTOSHOWROOM! Order #${this.order.id}`;
     const shareData = {
       title: 'My AUTOSHOWROOM Order',
-      text: `I just ordered a ${this.order.items[0]?.car.brand} ${this.order.items[0]?.car.model} from AUTOSHOWROOM! Order #${this.order.id}`,
+      text: shareText,
       url: window.location.href,
     };
 
@@ -261,10 +267,9 @@ export class OrderSuccessPage implements OnInit {
       } catch (error) {
         console.error('Error sharing:', error);
       }
-    } else {
-      // Fallback: copy to clipboard
-      navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`);
-      // Could show a toast here
+    } else if (navigator.clipboard) {
+      await navigator.clipboard.writeText(`${shareText} ${window.location.href}`);
+      console.log('Order info copied to clipboard.');
     }
   }
 }
