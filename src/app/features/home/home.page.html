@@ -1,13 +1,18 @@
 <ion-content [fullscreen]="true" class="home-content">
   <div class="home-shell">
-    <section class="hero-section">
+    <section class="hero-section glass-card">
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
-        <p class="hero-eyebrow">Premium Auto Marketplace</p>
+        <div class="hero-badge">
+          <ion-icon name="star"></ion-icon>
+          <span>Premium Auto Marketplace</span>
+        </div>
+
+        <p class="hero-eyebrow">Luxury • Performance • Electric</p>
         <h1 class="hero-title">Find Your Dream Car</h1>
         <p class="hero-subtitle">
-          Explore premium vehicles, compare specs, save your favorites, and shop with confidence.
+          Explore premium vehicles, compare specs, save favorites, and build your shortlist with a sleek modern car marketplace experience.
         </p>
 
         <div class="hero-actions">
@@ -17,22 +22,37 @@
           </ion-button>
 
           <ion-button expand="block" fill="outline" class="hero-secondary" (click)="goToShop()">
+            <ion-icon name="arrow-forward-outline" slot="start"></ion-icon>
             Browse Shop
           </ion-button>
         </div>
 
         <div class="hero-quick-links">
-          <ion-button fill="clear" (click)="goToFavorites()">Favorites</ion-button>
-          <ion-button fill="clear" (click)="goToCart()">Cart</ion-button>
+          <ion-button fill="clear" (click)="goToFavorites()">
+            <ion-icon name="heart-outline" slot="start"></ion-icon>
+            Favorites
+          </ion-button>
+          <ion-button fill="clear" (click)="goToCart()">
+            <ion-icon name="cart-outline" slot="start"></ion-icon>
+            Cart
+          </ion-button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card" *ngFor="let stat of stats">
+            <span class="stat-value">{{ stat.value }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="search-section">
-      <div class="search-card">
+      <div class="search-card glass-card">
         <div class="search-copy">
+          <p class="section-eyebrow">Quick Search</p>
           <h3>Search for cars</h3>
-          <p>Find by brand, model, or category.</p>
+          <p>Find by brand, model, body type, or category.</p>
         </div>
 
         <ion-searchbar
@@ -41,12 +61,36 @@
           (ionInput)="onSearchInput($event)"
           (keyup.enter)="onSearch()"
           class="main-search"
+          show-clear-button="focus"
         ></ion-searchbar>
 
         <ion-button class="search-btn" (click)="onSearch()">
           <ion-icon name="search-outline" slot="start"></ion-icon>
           Search
         </ion-button>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <div class="section-header">
+        <div>
+          <p class="section-eyebrow">Explore Faster</p>
+          <h2 class="section-title">Popular Categories</h2>
+        </div>
+      </div>
+
+      <div class="categories-grid">
+        <button
+          type="button"
+          class="category-card"
+          *ngFor="let category of quickCategories"
+          (click)="onCategorySelect(category)"
+        >
+          <div class="category-icon">
+            <ion-icon [name]="category.icon"></ion-icon>
+          </div>
+          <span>{{ category.name }}</span>
+        </button>
       </div>
     </section>
 
@@ -64,11 +108,13 @@
 
       <div class="cars-grid">
         <app-car-card
-  [car]="car"
-  (viewDetails)="onViewCarDetails($event)"
-  (toggleFavorite)="onToggleFavorite($event)"
-  (addToCart)="onAddToCart($event)"
-></app-car-card>
+          *ngFor="let car of featuredCars"
+          [car]="car"
+          [isFavorite]="isFavorite(car)"
+          (viewDetails)="onViewCarDetails($event)"
+          (toggleFavorite)="onToggleFavorite($event)"
+          (addToCart)="onAddToCart($event)"
+        ></app-car-card>
       </div>
     </section>
 
@@ -94,19 +140,28 @@
     </section>
 
     <section class="quick-actions-section">
-      <div class="quick-card" (click)="goToShop()">
+      <div class="quick-card glass-card" (click)="goToShop()">
+        <div class="quick-card-icon">
+          <ion-icon name="search-outline"></ion-icon>
+        </div>
         <h3>Browse All Cars</h3>
-        <p>Explore the full collection.</p>
+        <p>Explore the full collection with filters and sorting.</p>
       </div>
 
-      <div class="quick-card" (click)="goToFavorites()">
+      <div class="quick-card glass-card" (click)="goToFavorites()">
+        <div class="quick-card-icon">
+          <ion-icon name="heart-outline"></ion-icon>
+        </div>
         <h3>My Favorites</h3>
-        <p>See your saved shortlist.</p>
+        <p>Open your saved shortlist and compare top picks.</p>
       </div>
 
-      <div class="quick-card" (click)="goToCart()">
+      <div class="quick-card glass-card" (click)="goToCart()">
+        <div class="quick-card-icon">
+          <ion-icon name="cart-outline"></ion-icon>
+        </div>
         <h3>My Cart</h3>
-        <p>Review items before checkout.</p>
+        <p>Review chosen cars before checkout or inquiry.</p>
       </div>
     </section>
   </div>

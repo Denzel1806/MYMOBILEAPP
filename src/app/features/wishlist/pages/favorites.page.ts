@@ -40,6 +40,7 @@ import { StorageService } from '../../../core/services/storage.service';
 
         <div class="favorites-grid" *ngIf="favoriteCars.length > 0">
           <app-car-card
+  *ngFor="let car of favoriteCars"
   [car]="car"
   (viewDetails)="onViewCarDetails($event)"
   (toggleFavorite)="onToggleFavorite($event)"

@@ -1,7 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { addIcons } from 'ionicons';
+import {
+  searchOutline,
+  heartOutline,
+  cartOutline,
+  arrowForwardOutline,
+  star,
+  flashOutline,
+  diamondOutline,
+  speedometerOutline,
+  sparklesOutline,
+} from 'ionicons/icons';
+
 import { CarCardComponent } from '../../shared/components/car-card/car-card.component';
 import { Car } from '../../shared/interfaces/car.interface';
 import { StorageService } from '../../core/services/storage.service';
@@ -11,11 +25,12 @@ import { StorageService } from '../../core/services/storage.service';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [CommonModule, IonicModule, CarCardComponent],
+  imports: [CommonModule, FormsModule, IonicModule, CarCardComponent],
 })
 export class HomePage implements OnInit {
   featuredCars: Car[] = [];
   searchQuery = '';
+  favoriteIds = new Set<string>();
 
   topBrands = [
     { name: 'Tesla', routeCategory: 'Electric' },
@@ -25,13 +40,60 @@ export class HomePage implements OnInit {
     { name: 'Hyundai', routeCategory: 'SUV' },
   ];
 
+  quickCategories = [
+    { name: 'Electric', icon: 'flash-outline' },
+    { name: 'Luxury', icon: 'diamond-outline' },
+    { name: 'Sports', icon: 'speedometer-outline' },
+    { name: 'SUV', icon: 'sparkles-outline' },
+  ];
+
+  stats = [
+    { label: 'Premium Cars', value: '250+' },
+    { label: 'Top Brands', value: '40+' },
+    { label: 'Happy Buyers', value: '12k+' },
+  ];
+
   constructor(
     private router: Router,
     private storageService: StorageService,
     private toastController: ToastController,
-  ) {}
+  ) {
+    addIcons({
+      searchOutline,
+      heartOutline,
+      cartOutline,
+      arrowForwardOutline,
+      star,
+      flashOutline,
+      diamondOutline,
+      speedometerOutline,
+      sparklesOutline,
+    });
+  }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loadHomeData();
+  }
+
+  async ionViewWillEnter() {
+    await this.loadFavorites();
+  }
+
+  async loadHomeData() {
+    this.seedFeaturedCars();
+    await this.loadFavorites();
+  }
+
+  async loadFavorites() {
+    try {
+      const favorites = await this.storageService.getFavorites();
+      this.favoriteIds = new Set(favorites.map((car) => String(car.id)));
+    } catch (error) {
+      console.error('Error loading favorites:', error);
+    }
+  }
+
+  seedFeaturedCars() {
     this.featuredCars = [
       {
         id: '1',
@@ -201,16 +263,22 @@ export class HomePage implements OnInit {
   }
 
   onSearch() {
-    this.router.navigate(['/search-results'], {
-      queryParams: { q: this.searchQuery?.trim() || '' },
+    const trimmedQuery = this.searchQuery?.trim() || '';
+    this.router.navigate(['/tabs/shop/search-results'], {
+      queryParams: { q: trimmedQuery },
     });
   }
 
-  onSearchInput(event: any) {
-    this.searchQuery = event.target.value || '';
+  onSearchInput(event: Event | CustomEvent) {
+    const value =
+      (event as CustomEvent)?.detail?.value ??
+      (event.target as HTMLInputElement)?.value ??
+      '';
+
+    this.searchQuery = value;
   }
 
-  onCategorySelect(category: any) {
+  onCategorySelect(category: { name: string }) {
     this.router.navigate(['/tabs/shop'], {
       queryParams: { category: category.name }
     });
@@ -225,41 +293,57 @@ export class HomePage implements OnInit {
     });
   }
 
- onViewCarDetails(car: Car) {
-  this.router.navigate(['/car', car.id]);
-}
+  onViewCarDetails(car: Car) {
+    this.router.navigate(['/car', car.id]);
+  }
+
+  isFavorite(car: Car): boolean {
+    return this.favoriteIds.has(String(car.id));
+  }
 
   async onToggleFavorite(car: Car) {
     try {
-      const favorites = await this.storageService.getFavorites();
-      const isFavorite = favorites.some(fav => fav.id === car.id);
+      const carId = String(car.id);
 
-      if (isFavorite) {
-        await this.storageService.removeFromFavorites(car.id);
+      if (this.favoriteIds.has(carId)) {
+        await this.storageService.removeFromFavorites(carId);
+        this.favoriteIds.delete(carId);
+        this.favoriteIds = new Set(this.favoriteIds);
         await this.showToast(`${car.brand} ${car.model} removed from favorites`);
         return;
       }
 
       await this.storageService.addToFavorites(car);
+      this.favoriteIds.add(carId);
+      this.favoriteIds = new Set(this.favoriteIds);
       await this.showToast(`${car.brand} ${car.model} added to favorites`);
     } catch (error) {
       console.error('Error toggling favorite:', error);
+      await this.showToast('Could not update favorites');
     }
   }
 
   async onAddToCart(car: Car) {
     try {
-      await this.storageService.addToCart({
-        id: Date.now(),
-        car,
-        quantity: 1,
-        addedAt: new Date(),
-      });
+      const cart = await this.storageService.getCart();
+      const existingItem = cart.find((item) => String(item.car.id) === String(car.id));
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+        await this.storageService.updateCartItem(existingItem);
+      } else {
+        await this.storageService.addToCart({
+          id: Date.now(),
+          car,
+          quantity: 1,
+          addedAt: new Date(),
+        });
+      }
 
       await this.showToast(`${car.brand} ${car.model} added to cart`);
-      await this.router.navigate(['/tabs/cart']);
     } catch (error) {
       console.error('Error adding to cart:', error);
+      await this.showToast('Could not add item to cart');
     }
   }
 
