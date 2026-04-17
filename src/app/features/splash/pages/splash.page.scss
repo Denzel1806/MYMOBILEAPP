@@ -1,5 +1,4 @@
-@use "../../../../theme/mixins.scss" as *;
-
+@use "../../../../theme/mixins" as *;
 .splash-content {
   --background: var(--hero-gradient);
 }

@@ -247,10 +247,15 @@ export class ShopPage implements OnInit {
   async loadInitialData() {
     try {
       this.isLoading = true;
-      const [cars, favorites] = await Promise.all([
-        this.storageService.getCars(),
-        this.storageService.getFavorites(),
-      ]);
+      let cars = await this.storageService.getCars();
+
+      // If no cars in storage, seed with default cars
+      if (!cars || cars.length === 0) {
+        cars = this.getDefaultCars();
+        await this.storageService.setCars(cars);
+      }
+
+      const favorites = await this.storageService.getFavorites();
 
       this.cars = cars;
       this.favoriteIds = new Set(favorites.map((car) => String(car.id)));
@@ -261,6 +266,129 @@ export class ShopPage implements OnInit {
     } finally {
       this.isLoading = false;
     }
+  }
+
+  private getDefaultCars(): Car[] {
+    // Return the same cars from home page
+    return [
+      {
+        id: '1',
+        slug: 'tesla-model-3',
+        brand: 'Tesla',
+        model: 'Model 3',
+        year: 2024,
+        category: 'Electric',
+        bodyType: 'Sedan',
+        transmission: 'Automatic',
+        fuelType: 'Electric',
+        drivetrain: 'RWD',
+        engine: 'Electric Motor',
+        horsepower: 283,
+        torque: '420 Nm',
+        rangeKm: 491,
+        topSpeedKph: 225,
+        zeroToHundred: '5.8s',
+        seats: 5,
+        doors: 4,
+        colorOptions: ['Pearl White', 'Deep Blue'],
+        price: 45000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 4.8,
+        reviewCount: 1250,
+        thumbnail: 'https://i.pinimg.com/1200x/01/be/62/01be62895c6e398135414725e7bf4dac.jpg',
+        gallery: ['https://i.pinimg.com/1200x/01/be/62/01be62895c6e398135414725e7bf4dac.jpg'],
+        shortDescription: 'The Tesla Model 3 is a compact executive electric sedan.',
+        longDescription: 'The Tesla Model 3 offers excellent range, quick acceleration, minimalist design, and advanced driver assistance features for daily driving and long-distance travel.',
+        specifications: {
+          dimensions: { lengthMm: 4694, widthMm: 1849, heightMm: 1443, wheelbaseMm: 2875, groundClearanceMm: 140 },
+          performance: { horsepower: 283, torque: '420 Nm', topSpeedKph: 225, accelerationZeroToHundred: '5.8s' },
+          efficiency: { fuelConsumption: 'N/A', batteryCapacity: '60 kWh', rangeKm: 491 },
+          safety: ['5-star NHTSA rating', 'Lane keeping assist', 'Automatic emergency braking'],
+          comfort: ['Premium audio', 'Heated seats', 'Dual-zone climate control'],
+          technology: ['15-inch touchscreen', 'Navigation', 'Bluetooth', 'Autopilot']
+        }
+      },
+      {
+        id: '2',
+        slug: 'bmw-m4-competition',
+        brand: 'BMW',
+        model: 'M4 Competition',
+        year: 2024,
+        category: 'Luxury',
+        bodyType: 'Coupe',
+        transmission: 'Automatic',
+        fuelType: 'Gasoline',
+        drivetrain: 'AWD',
+        engine: '3.0L Twin-Turbo Inline-6',
+        horsepower: 503,
+        torque: '650 Nm',
+        rangeKm: 540,
+        topSpeedKph: 290,
+        zeroToHundred: '3.5s',
+        seats: 4,
+        doors: 2,
+        colorOptions: ['Black Sapphire', 'Isle of Man Green'],
+        price: 79000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 4.9,
+        reviewCount: 860,
+        thumbnail: 'https://i.pinimg.com/1200x/07/91/97/079197f4d399b83687019efd8d3cd71a.jpg',
+        gallery: ['https://i.pinimg.com/1200x/07/91/97/079197f4d399b83687019efd8d3cd71a.jpg'],
+        shortDescription: 'A high-performance luxury coupe with aggressive styling.',
+        longDescription: 'The BMW M4 Competition blends track-ready power, premium comfort, and advanced cabin technology in a bold performance coupe package.',
+        specifications: {
+          dimensions: { lengthMm: 4794, widthMm: 1887, heightMm: 1393, wheelbaseMm: 2857, groundClearanceMm: 120 },
+          performance: { horsepower: 503, torque: '650 Nm', topSpeedKph: 290, accelerationZeroToHundred: '3.5s' },
+          efficiency: { fuelConsumption: '10.1 L/100km', batteryCapacity: 'N/A', rangeKm: 540 },
+          safety: ['Adaptive cruise control', 'Lane departure warning', 'ABS', 'Airbags'],
+          comfort: ['Merino leather seats', 'Heated front seats', 'Ambient lighting'],
+          technology: ['Curved display', 'Apple CarPlay', 'Android Auto', 'Parking assistant']
+        }
+      },
+      {
+        id: '3',
+        slug: 'toyota-supra',
+        brand: 'Toyota',
+        model: 'GR Supra',
+        year: 2024,
+        category: 'Sports',
+        bodyType: 'Coupe',
+        transmission: 'Automatic',
+        fuelType: 'Gasoline',
+        drivetrain: 'RWD',
+        engine: '3.0L Turbo Inline-6',
+        horsepower: 382,
+        torque: '500 Nm',
+        rangeKm: 520,
+        topSpeedKph: 250,
+        zeroToHundred: '4.1s',
+        seats: 2,
+        doors: 2,
+        colorOptions: ['Renaissance Red', 'Matte White'],
+        price: 56000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 4.7,
+        reviewCount: 610,
+        thumbnail: 'https://i.pinimg.com/736x/df/11/fe/df11fe697b8b69fe09150aa299d38c96.jpg',
+        gallery: ['https://i.pinimg.com/736x/df/11/fe/df11fe697b8b69fe09150aa299d38c96.jpg'],
+        shortDescription: 'A modern sports coupe with iconic Supra DNA.',
+        longDescription: 'The Toyota GR Supra delivers sharp handling, turbocharged performance, and unmistakable coupe styling for enthusiasts.',
+        specifications: {
+          dimensions: { lengthMm: 4380, widthMm: 1865, heightMm: 1290, wheelbaseMm: 2470, groundClearanceMm: 119 },
+          performance: { horsepower: 382, torque: '500 Nm', topSpeedKph: 250, accelerationZeroToHundred: '4.1s' },
+          efficiency: { fuelConsumption: '8.1 L/100km', batteryCapacity: 'N/A', rangeKm: 520 },
+          safety: ['Blind spot monitor', 'ABS', 'Airbags', 'Rear cross traffic alert'],
+          comfort: ['Sport seats', 'Dual-zone AC', 'Leather trim'],
+          technology: ['8.8-inch infotainment', 'Navigation', 'Bluetooth', 'Wireless charging']
+        }
+      }
+    ];
   }
 
   onSearch(event: Event | CustomEvent) {

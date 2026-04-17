@@ -1,212 +1,51 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
-
-// AUTOSHOWROOM Theme: Midnight Velocity
-// Premium automotive luxury with modern e-commerce clarity
-
-// Color Tokens
 :root {
-  --ion-color-primary: #2563EB;
-  --ion-color-primary-rgb: 37, 99, 235;
+  /* FONT */
+  --ion-font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* CORE COLORS */
+  --blue-primary: #2563eb;
+  --blue-dark: #1e40af;
+  --blue-light: #3b82f6;
+
+  --white: #ffffff;
+
+  /* GRADIENTS */
+  --gradient-blue: linear-gradient(135deg, #2563eb, #3b82f6);
+  --gradient-blue-soft: linear-gradient(180deg, #eff6ff, #ffffff);
+
+  /* TEXT */
+  --text-primary: #0a2540;
+  --text-secondary: rgba(10, 37, 64, 0.7);
+
+  /* SURFACE */
+  --surface-glass: rgba(255, 255, 255, 0.75);
+  --surface-border: rgba(37, 99, 235, 0.15);
+
+  /* SHADOW */
+  --shadow-soft: 0 10px 30px rgba(37, 99, 235, 0.15);
+  --shadow-strong: 0 20px 60px rgba(37, 99, 235, 0.25);
+
+  /* RADIUS */
+  --radius-md: 18px;
+  --radius-lg: 24px;
+
+  /* IONIC */
+  --ion-color-primary: var(--blue-primary);
   --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #1D4ED8;
-  --ion-color-primary-tint: #DBEAFE;
 
-  --ion-color-secondary: #0F172A;
-  --ion-color-secondary-rgb: 15, 23, 42;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255, 255, 255;
-  --ion-color-secondary-shade: #020617;
-  --ion-color-secondary-tint: #1E293B;
-
-  --ion-color-tertiary: #DC2626;
-  --ion-color-tertiary-rgb: 220, 38, 38;
-  --ion-color-tertiary-contrast: #ffffff;
-  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
-  --ion-color-tertiary-shade: #B91C1C;
-  --ion-color-tertiary-tint: #EF4444;
-
-  --ion-color-success: #16A34A;
-  --ion-color-success-rgb: 22, 163, 74;
-  --ion-color-success-contrast: #ffffff;
-  --ion-color-success-contrast-rgb: 255, 255, 255;
-  --ion-color-success-shade: #15803D;
-  --ion-color-success-tint: #22C55E;
-
-  --ion-color-warning: #F59E0B;
-  --ion-color-warning-rgb: 245, 158, 11;
-  --ion-color-warning-contrast: #000000;
-  --ion-color-warning-contrast-rgb: 0, 0, 0;
-  --ion-color-warning-shade: #D97706;
-  --ion-color-warning-tint: #FBBF24;
-
-  --ion-color-danger: #DC2626;
-  --ion-color-danger-rgb: 220, 38, 38;
-  --ion-color-danger-contrast: #ffffff;
-  --ion-color-danger-contrast-rgb: 255, 255, 255;
-  --ion-color-danger-shade: #B91C1C;
-  --ion-color-danger-tint: #EF4444;
-
-  --ion-color-info: #0EA5E9;
-  --ion-color-info-rgb: 14, 165, 233;
-  --ion-color-info-contrast: #ffffff;
-  --ion-color-info-contrast-rgb: 255, 255, 255;
-  --ion-color-info-shade: #0284C7;
-  --ion-color-info-tint: #38BDF8;
-
-  --ion-color-light: #F8FAFC;
-  --ion-color-light-rgb: 248, 250, 252;
-  --ion-color-light-contrast: #000000;
-  --ion-color-light-contrast-rgb: 0, 0, 0;
-  --ion-color-light-shade: #DEE2E6;
-  --ion-color-light-tint: #FFFFFF;
-
-  --ion-color-medium: #64748B;
-  --ion-color-medium-rgb: 100, 116, 139;
-  --ion-color-medium-contrast: #ffffff;
-  --ion-color-medium-contrast-rgb: 255, 255, 255;
-  --ion-color-medium-shade: #596877;
-  --ion-color-medium-tint: #7B8794;
-
-  --ion-color-dark: #0B1220;
-  --ion-color-dark-rgb: 11, 18, 32;
-  --ion-color-dark-contrast: #ffffff;
-  --ion-color-dark-contrast-rgb: 255, 255, 255;
-  --ion-color-dark-shade: #0A0F1A;
-  --ion-color-dark-tint: #1E293B;
+  --ion-background-color: var(--white);
+  --ion-text-color: var(--text-primary);
 }
 
-// Custom Text Tokens
-:root {
-  --text-primary: #0F172A;
-  --text-secondary: #475569;
-  --text-muted: #94A3B8;
-  --text-inverse: #FFFFFF;
-  --text-on-primary: #FFFFFF;
-  --text-on-dark: #F8FAFC;
-  --price-text: #DC2626;
-  --success-text: #166534;
-}
+/* DARK MODE (STILL BLUE BASED) */
+body.dark {
+  --white: #0b1220;
 
-// Backgrounds
-:root {
-  --app-background: #F5F7FB;
-  --toolbar-background: #FFFFFF;
-  --card-background: #FFFFFF;
-  --hero-background: #0F172A;
-  --footer-background: #0B1220;
-  --section-alt-background: #EEF2FF;
-  --checkout-background: #F8FAFC;
-}
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
 
-// Gradients
-:root {
-  --hero-gradient: linear-gradient(135deg, #020617 0%, #0F172A 35%, #1D4ED8 100%);
-  --promo-gradient: linear-gradient(135deg, #111827 0%, #1E293B 55%, #334155 100%);
-  --cta-gradient: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
-  --performance-gradient: linear-gradient(135deg, #7F1D1D 0%, #DC2626 100%);
-}
+  --surface-glass: rgba(30, 64, 175, 0.25);
+  --surface-border: rgba(59, 130, 246, 0.2);
 
-// Shadows
-:root {
-  --card-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
-  --floating-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
-  --button-shadow: 0 8px 20px rgba(37, 99, 235, 0.20);
-  --modal-shadow: 0 24px 64px rgba(2, 6, 23, 0.28);
-}
-
-// Spacing System (base unit: 4px)
-:root {
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 12px;
-  --spacing-lg: 16px;
-  --spacing-xl: 20px;
-  --spacing-2xl: 24px;
-  --spacing-3xl: 32px;
-  --spacing-4xl: 40px;
-}
-
-// Radius System
-:root {
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 20px;
-  --radius-2xl: 24px;
-  --radius-pill: 9999px;
-}
-
-// Typography
-:root {
-  --font-family-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-family-headings: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-weight-light: 300;
-  --font-weight-regular: 400;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 600;
-  --font-weight-bold: 700;
-  --font-weight-extrabold: 800;
-  --font-weight-black: 900;
-}
-
-// Scale
-:root {
-  --text-display: 48px;
-  --text-h1: 36px;
-  --text-h2: 30px;
-  --text-h3: 24px;
-  --text-h4: 20px;
-  --text-body-lg: 18px;
-  --text-body-md: 16px;
-  --text-body-sm: 14px;
-  --text-caption: 12px;
-  --text-overline: 10px;
-}
-
-// Line Heights
-:root {
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.5;
-  --line-height-relaxed: 1.7;
-}
-
-// Glassmorphism Design Tokens
-:root {
-  --glass-background: rgba(255, 255, 255, 0.25);
-  --glass-background-light: rgba(255, 255, 255, 0.15);
-  --glass-background-dark: rgba(255, 255, 255, 0.35);
-  --glass-border: rgba(255, 255, 255, 0.18);
-  --glass-backdrop: blur(20px) saturate(180%);
-  --glass-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
-  --glass-shadow-large: 0 16px 64px rgba(31, 38, 135, 0.2);
-  --glass-overlay: rgba(255, 255, 255, 0.1);
-  --glass-reflection: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-}
-
-// Enhanced Gradients for Modern Look
-:root {
-  --hero-gradient: linear-gradient(135deg, #0F172A 0%, #1E293B 25%, #334155 50%, #475569 75%, #64748B 100%);
-  --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
-  --card-gradient: linear-gradient(145deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
-  --button-gradient: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E40AF 100%);
-  --accent-gradient: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%, #EC4899 100%);
-}
-
-// Dark Mode Support
-@media (prefers-color-scheme: dark) {
-  :root {
-    --ion-color-primary-contrast: #000000;
-    --ion-color-secondary-contrast: #000000;
-    --text-primary: #F8FAFC;
-    --text-secondary: #CBD5E1;
-    --app-background: #020617;
-    --toolbar-background: #0F172A;
-    --card-background: #1E293B;
-    --hero-background: #020617;
-    --footer-background: #020617;
-    --section-alt-background: #1E293B;
-    --checkout-background: #0F172A;
-  }
+  --shadow-soft: 0 10px 30px rgba(37, 99, 235, 0.4);
 }

@@ -1,3 +1,4 @@
+@use "../../../../theme/mixins.scss" as *;
 :host {
   --page-bg: linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
   --surface: rgba(255, 255, 255, 0.92);

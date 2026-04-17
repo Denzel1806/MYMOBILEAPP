@@ -35,9 +35,13 @@ export class HomePage implements OnInit {
   topBrands = [
     { name: 'Tesla', routeCategory: 'Electric' },
     { name: 'BMW', routeCategory: 'Luxury' },
-    { name: 'Mercedes', routeCategory: 'Sedan' },
+    { name: 'Mercedes-Benz', routeCategory: 'SUV' },
     { name: 'Toyota', routeCategory: 'Sports' },
-    { name: 'Hyundai', routeCategory: 'SUV' },
+    { name: 'Porsche', routeCategory: 'Sports' },
+    { name: 'Audi', routeCategory: 'Luxury' },
+    { name: 'Hyundai', routeCategory: 'Electric' },
+    { name: 'Ferrari', routeCategory: 'Luxury' },
+    { name: 'Lamborghini', routeCategory: 'Sports' },
   ];
 
   quickCategories = [
@@ -81,6 +85,8 @@ export class HomePage implements OnInit {
 
   async loadHomeData() {
     this.seedFeaturedCars();
+    // Save cars to storage so shop page can access them
+    await this.storageService.setCars(this.featuredCars);
     await this.loadFavorites();
   }
 
@@ -258,13 +264,218 @@ export class HomePage implements OnInit {
           comfort: ['Nappa leather seats', 'Automatic climate control'],
           technology: ['Virtual cockpit', 'Bang & Olufsen audio', 'Navigation']
         }
+      },
+      {
+        id: '5',
+        slug: 'mercedes-benz-g63',
+        brand: 'Mercedes-Benz',
+        model: 'G63 AMG',
+        year: 2024,
+        category: 'SUV',
+        bodyType: 'SUV',
+        transmission: 'Automatic',
+        fuelType: 'Gasoline',
+        drivetrain: 'AWD',
+        engine: '4.0L Twin-Turbo V8',
+        horsepower: 577,
+        torque: '850 Nm',
+        rangeKm: 480,
+        topSpeedKph: 220,
+        zeroToHundred: '4.5s',
+        seats: 5,
+        doors: 5,
+        colorOptions: ['Obsidian Black', 'G Manufaktur Arabian Grey'],
+        price: 180000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 4.8,
+        reviewCount: 520,
+        thumbnail: 'https://i.pinimg.com/736x/41/c4/5f/41c45f2a7b0be400e5c3d7dbb5236b87.jpg',
+        gallery: [
+          'https://i.pinimg.com/736x/41/c4/5f/41c45f2a7b0be400e5c3d7dbb5236b87.jpg'
+        ],
+        shortDescription: 'The iconic luxury off-road SUV with AMG power.',
+        longDescription: 'The Mercedes-Benz G63 AMG combines legendary G-Class capability with handcrafted AMG performance, luxury amenities, and unmistakable presence.',
+        specifications: {
+          dimensions: { lengthMm: 4870, widthMm: 1984, heightMm: 1980, wheelbaseMm: 2890, groundClearanceMm: 241 },
+          performance: { horsepower: 577, torque: '850 Nm', topSpeedKph: 220, accelerationZeroToHundred: '4.5s' },
+          efficiency: { fuelConsumption: '14.5 L/100km', batteryCapacity: 'N/A', rangeKm: 480 },
+          safety: ['Active brake assist', 'Attention assist', 'Blind spot assist', '360° camera'],
+          comfort: ['AMG Performance seats', 'Burmester surround sound', 'Ambient lighting'],
+          technology: ['MBUX infotainment', 'Wireless charging', 'Apple CarPlay', 'Android Auto']
+        }
+      },
+      {
+        id: '6',
+        slug: 'porsche-911-carrera',
+        brand: 'Porsche',
+        model: '911 Carrera S',
+        year: 2024,
+        category: 'Sports',
+        bodyType: 'Coupe',
+        transmission: 'Automatic',
+        fuelType: 'Gasoline',
+        drivetrain: 'RWD',
+        engine: '3.0L Twin-Turbo Flat-6',
+        horsepower: 443,
+        torque: '530 Nm',
+        rangeKm: 550,
+        topSpeedKph: 308,
+        zeroToHundred: '3.5s',
+        seats: 4,
+        doors: 2,
+        colorOptions: ['Guards Red', 'Gentian Blue', 'White'],
+        price: 135000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 4.9,
+        reviewCount: 780,
+        thumbnail: 'https://i.pinimg.com/736x/53/ea/9e/53ea9e8716b29e38f5adccec1e96b5a0.jpg',
+        gallery: [
+          'https://i.pinimg.com/736x/53/ea/9e/53ea9e8716b29e38f5adccec1e96b5a0.jpg'
+        ],
+        shortDescription: 'The timeless sports car icon with everyday usability.',
+        longDescription: 'The Porsche 911 Carrera S continues the legacy with twin-turbo power, precise handling, and everyday comfort in an unmistakable silhouette.',
+        specifications: {
+          dimensions: { lengthMm: 4519, widthMm: 1852, heightMm: 1300, wheelbaseMm: 2450, groundClearanceMm: 120 },
+          performance: { horsepower: 443, torque: '530 Nm', topSpeedKph: 308, accelerationZeroToHundred: '3.5s' },
+          efficiency: { fuelConsumption: '9.7 L/100km', batteryCapacity: 'N/A', rangeKm: 550 },
+          safety: ['Porsche Stability Management', 'Lane keeping assist', 'Night Vision Assist'],
+          comfort: ['Sport seats Plus', 'BOSE Surround Sound', 'Panoramic roof'],
+          technology: ['Porsche Communication Management', 'Track Precision App', 'Wireless Apple CarPlay']
+        }
+      },
+      {
+        id: '7',
+        slug: 'hyundai-ioniq-5',
+        brand: 'Hyundai',
+        model: 'IONIQ 5',
+        year: 2024,
+        category: 'Electric',
+        bodyType: 'SUV',
+        transmission: 'Automatic',
+        fuelType: 'Electric',
+        drivetrain: 'AWD',
+        engine: 'Dual Electric Motors',
+        horsepower: 320,
+        torque: '605 Nm',
+        rangeKm: 430,
+        topSpeedKph: 185,
+        zeroToHundred: '5.1s',
+        seats: 5,
+        doors: 5,
+        colorOptions: ['Gravity Gold', 'Lucid Blue', 'Digital Teal'],
+        price: 52000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 4.7,
+        reviewCount: 920,
+        thumbnail: 'https://i.pinimg.com/736x/8b/25/24/8b25245f6e63548a7a8084052a2a0d4e.jpg',
+        gallery: [
+          'https://i.pinimg.com/736x/8b/25/24/8b25245f6e63548a7a8084052a2a0d4e.jpg'
+        ],
+        shortDescription: 'Futuristic electric crossover with ultra-fast charging.',
+        longDescription: 'The Hyundai IONIQ 5 combines retro-futuristic design, 800V ultra-fast charging, spacious interior, and impressive electric range in a versatile package.',
+        specifications: {
+          dimensions: { lengthMm: 4635, widthMm: 1890, heightMm: 1605, wheelbaseMm: 3000, groundClearanceMm: 160 },
+          performance: { horsepower: 320, torque: '605 Nm', topSpeedKph: 185, accelerationZeroToHundred: '5.1s' },
+          efficiency: { fuelConsumption: 'N/A', batteryCapacity: '77.4 kWh', rangeKm: 430 },
+          safety: ['Highway Driving Assist', 'Smart Cruise Control', 'Blind-spot View Monitor'],
+          comfort: ['Relaxation seats', 'Vision roof', 'Dual-zone climate control'],
+          technology: ['12.3-inch digital cluster', 'AR Head-up display', 'V2L (Vehicle to Load)']
+        }
+      },
+      {
+        id: '8',
+        slug: 'ferrari-roma',
+        brand: 'Ferrari',
+        model: 'Roma',
+        year: 2024,
+        category: 'Luxury',
+        bodyType: 'Coupe',
+        transmission: 'Automatic',
+        fuelType: 'Gasoline',
+        drivetrain: 'RWD',
+        engine: '3.9L Twin-Turbo V8',
+        horsepower: 612,
+        torque: '760 Nm',
+        rangeKm: 520,
+        topSpeedKph: 320,
+        zeroToHundred: '3.4s',
+        seats: 2,
+        doors: 2,
+        colorOptions: ['Rosso Corsa', 'Giallo Modena', 'Nero'],
+        price: 245000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 5.0,
+        reviewCount: 280,
+        thumbnail: 'https://i.pinimg.com/736x/67/d4/d2/67d4d2a30a5e97e3f27b7e6c6968f8c0.jpg',
+        gallery: [
+          'https://i.pinimg.com/736x/67/d4/d2/67d4d2a30a5e97e3f27b7e6c6968f8c0.jpg'
+        ],
+        shortDescription: 'Elegant Italian grand tourer with timeless style.',
+        longDescription: 'The Ferrari Roma embodies La Dolce Vita with sleek lines, intoxicating V8 power, and refined grand touring comfort in a contemporary package.',
+        specifications: {
+          dimensions: { lengthMm: 4656, widthMm: 1974, heightMm: 1301, wheelbaseMm: 2670, groundClearanceMm: 120 },
+          performance: { horsepower: 612, torque: '760 Nm', topSpeedKph: 320, accelerationZeroToHundred: '3.4s' },
+          efficiency: { fuelConsumption: '11.8 L/100km', batteryCapacity: 'N/A', rangeKm: 520 },
+          safety: ['Ferrari Stability Control', 'F1-Trac', 'Carbon ceramic brakes'],
+          comfort: ['Racing seats', 'JBL Professional audio', 'Climate control'],
+          technology: ['Ferrari Cockpit', '8.4-inch touchscreen', 'Apple CarPlay', 'Race telemetry']
+        }
+      },
+      {
+        id: '9',
+        slug: 'lamborghini-huracan',
+        brand: 'Lamborghini',
+        model: 'Huracán EVO',
+        year: 2024,
+        category: 'Sports',
+        bodyType: 'Coupe',
+        transmission: 'Automatic',
+        fuelType: 'Gasoline',
+        drivetrain: 'AWD',
+        engine: '5.2L V10',
+        horsepower: 631,
+        torque: '565 Nm',
+        rangeKm: 450,
+        topSpeedKph: 325,
+        zeroToHundred: '2.9s',
+        seats: 2,
+        doors: 2,
+        colorOptions: ['Verde Mantis', 'Arancio Borealis', 'Bianco Monocerus'],
+        price: 290000,
+        currency: 'USD',
+        stockStatus: 'in-stock',
+        featured: true,
+        rating: 4.9,
+        reviewCount: 420,
+        thumbnail: 'https://i.pinimg.com/736x/43/9e/f5/439ef51c6db5d9f3f5e5c17fc7c34c01.jpg',
+        gallery: [
+          'https://i.pinimg.com/736x/43/9e/f5/439ef51c6db5d9f3f5e5c17fc7c34c01.jpg'
+        ],
+        shortDescription: 'Raging bull supercar with extreme performance.',
+        longDescription: 'The Lamborghini Huracán EVO delivers breathtaking V10 power, razor-sharp handling, and aggressive Italian styling that commands attention everywhere.',
+        specifications: {
+          dimensions: { lengthMm: 4520, widthMm: 1933, heightMm: 1165, wheelbaseMm: 2620, groundClearanceMm: 135 },
+          performance: { horsepower: 631, torque: '565 Nm', topSpeedKph: 325, accelerationZeroToHundred: '2.9s' },
+          efficiency: { fuelConsumption: '14.7 L/100km', batteryCapacity: 'N/A', rangeKm: 450 },
+          safety: ['LDVI (Lamborghini Dinamica Veicolo Integrata)', 'Magneto rheological suspension', 'Ceramic brakes'],
+          comfort: ['Sport seats', 'Premium leather', 'Dual-zone climate'],
+          technology: ['Lamborghini Infotainment System', 'Apple CarPlay', 'Telemetry system', 'Alcantara interior']
+        }
       }
     ];
   }
 
   onSearch() {
     const trimmedQuery = this.searchQuery?.trim() || '';
-    this.router.navigate(['/tabs/shop/search-results'], {
+    this.router.navigate(['/search'], {
       queryParams: { q: trimmedQuery },
     });
   }
@@ -280,7 +491,8 @@ export class HomePage implements OnInit {
 
   onCategorySelect(category: { name: string }) {
     this.router.navigate(['/tabs/shop'], {
-      queryParams: { category: category.name }
+      queryParams: { category: category.name },
+      queryParamsHandling: 'merge'
     });
   }
 
@@ -289,7 +501,8 @@ export class HomePage implements OnInit {
       queryParams: {
         brand: brand.name,
         category: brand.routeCategory
-      }
+      },
+      queryParamsHandling: 'merge'
     });
   }
 

@@ -1,356 +1,51 @@
-/*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
- */
+@use "./theme/mixins.scss" as *;
 
-/* Mixins */
-@use "theme/mixins.scss" as *;
+@import "./theme/variables.scss";
+@import "./theme/tokens.scss";
 
-/* Core CSS required for Ionic components to work properly */
-@import "@ionic/angular/css/core.css";
-
-/* Basic CSS for apps built with Ionic */
-@import "@ionic/angular/css/normalize.css";
-@import "@ionic/angular/css/structure.css";
-@import "@ionic/angular/css/typography.css";
-@import "@ionic/angular/css/display.css";
-
-/* Theme imports */
-@import "theme/variables.scss";
-@import "theme/tokens.scss";
-
-/* Inter Font Import */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-
-/* Global styles */
-* {
-  box-sizing: border-box;
-}
-
-html {
-  font-family: var(--font-family-primary);
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  background: var(--app-background);
+/* BASE */
+html, body, ion-app {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #ffffff 0%, #f0f6ff 100%);
   color: var(--text-primary);
-  margin: 0;
-  padding: 0;
 }
 
-/* Utility classes */
-.flex-center {
-  @include flex-center;
-}
-
-.flex-between {
-  @include flex-between;
-}
-
-.flex-column {
-  @include flex-column;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.mb-0 { margin-bottom: 0; }
-.mb-1 { margin-bottom: var(--spacing-sm); }
-.mb-2 { margin-bottom: var(--spacing-md); }
-.mb-3 { margin-bottom: var(--spacing-lg); }
-.mb-4 { margin-bottom: var(--spacing-xl); }
-
-.mt-0 { margin-top: 0; }
-.mt-1 { margin-top: var(--spacing-sm); }
-.mt-2 { margin-top: var(--spacing-md); }
-.mt-3 { margin-top: var(--spacing-lg); }
-.mt-4 { margin-top: var(--spacing-xl); }
-
-.p-0 { padding: 0; }
-.p-1 { padding: var(--spacing-sm); }
-.p-2 { padding: var(--spacing-md); }
-.p-3 { padding: var(--spacing-lg); }
-.p-4 { padding: var(--spacing-xl); }
-
-/* Component overrides */
-ion-content {
-  --background: var(--app-background);
-}
-
+/* TOOLBAR */
 ion-toolbar {
-  --background: var(--toolbar-background);
+  --background: white;
+  border-bottom: 1px solid var(--border-soft);
 }
 
+/* CARDS */
 ion-card {
-  --background: var(--glass-background);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
-  box-shadow: var(--glass-shadow);
-  border: 1px solid var(--glass-border);
-  border-radius: var(--radius-lg);
-  position: relative;
-  overflow: hidden;
-  @include smooth-transition;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: var(--glass-reflection);
-    pointer-events: none;
-    z-index: 1;
-  }
-  
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--glass-shadow-large);
-    --background: var(--glass-background-dark);
-  }
+  @include card;
+  @include hover-lift;
 }
 
+/* BUTTONS */
 ion-button {
-  --border-radius: var(--radius-lg);
-  font-weight: var(--font-weight-semibold);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  --box-shadow: 0 4px 16px rgba(37, 99, 235, 0.15);
-  --background-hover: var(--button-gradient);
-  --background-activated: var(--button-gradient);
-  letter-spacing: 0.01em;
-  position: relative;
-  overflow: hidden;
-  
-  &::part(native) {
-    @include modern-button;
-  }
-  
-  &:hover {
-    transform: translateY(-2px);
-    --box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
-  }
-  
-  &:active {
-    transform: translateY(0);
-  }
-  
-  &.button-solid {
-    --background: var(--button-gradient);
-    --background-hover: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
-  }
-  
-  &.button-outline {
-    --border-width: 2px;
-    --border-color: var(--ion-color-primary);
-    --color: var(--ion-color-primary);
-    
-    &:hover {
-      --background: rgba(37, 99, 235, 0.1);
-    }
-  }
-  
-  &.button-clear {
-    --color: var(--ion-color-primary);
-    
-    &:hover {
-      --background: rgba(37, 99, 235, 0.05);
-    }
-  }
+  @include button-primary;
 }
 
-ion-input, ion-textarea {
-  --border-radius: var(--radius-sm);
+/* TEXT */
+h1, h2, h3 {
+  @include heading;
 }
 
-ion-searchbar {
-  --border-radius: var(--radius-2xl);
-  --background: var(--glass-background);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
-  --box-shadow: var(--glass-shadow);
-  --border-color: var(--glass-border);
-  --placeholder-color: var(--text-muted);
-  --placeholder-opacity: 0.7;
-  --icon-color: var(--text-muted);
-  --clear-button-color: var(--text-muted);
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--glass-border);
-  @include smooth-transition;
-  
-  &:focus-within {
-    --background: var(--glass-background-dark);
-    --box-shadow: var(--glass-shadow-large);
-    transform: scale(1.02);
-  }
-  
-  &::part(native) {
-    padding: 0 var(--spacing-lg);
-  }
-  
-  &::part(searchbar-input) {
-    font-size: var(--text-body-md);
-    font-weight: var(--font-weight-medium);
-  }
-  
-  &::part(searchbar-icon) {
-    font-size: 20px;
-  }
+p {
+  @include text-body;
 }
 
-/* Enhanced Animations */
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(20px);
-  }
-  to { 
-    opacity: 1; 
-    transform: translateY(0);
-  }
+/* INPUTS */
+ion-input, ion-searchbar {
+  --background: white;
+  --border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
 }
 
-@keyframes slideInLeft {
-  from { 
-    opacity: 0; 
-    transform: translateX(-30px);
-  }
-  to { 
-    opacity: 1; 
-    transform: translateX(0);
-  }
+/* CONTAINER */
+.app-shell {
+  max-width: 1100px;
+  margin: auto;
+  padding: 20px;
 }
-
-@keyframes slideInRight {
-  from { 
-    opacity: 0; 
-    transform: translateX(30px);
-  }
-  to { 
-    opacity: 1; 
-    transform: translateX(0);
-  }
-}
-
-@keyframes scaleIn {
-  from { 
-    opacity: 0; 
-    transform: scale(0.9);
-  }
-  to { 
-    opacity: 1; 
-    transform: scale(1);
-  }
-}
-
-@keyframes shimmer {
-  0% { 
-    background-position: -200% 0;
-  }
-  100% { 
-    background-position: 200% 0;
-  }
-}
-
-@keyframes float {
-  0%, 100% { 
-    transform: translateY(0px);
-  }
-  50% { 
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% { 
-    opacity: 1;
-  }
-  50% { 
-    opacity: 0.7;
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-in-left {
-  animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.slide-in-right {
-  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.scale-in {
-  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-.float {
-  animation: float 3s ease-in-out infinite;
-}
-
-.pulse {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Global transition classes */
-.transition-all {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.transition-transform {
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.transition-opacity {
-  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* Staggered animations for lists */
-.stagger-animation > * {
-  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
-}
-
-.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
-.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
-.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
-.stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }
-.stagger-animation > *:nth-child(7) { animation-delay: 0.7s; }
-.stagger-animation > *:nth-child(8) { animation-delay: 0.8s; }
-
-/* Optional CSS utils that can be commented out */
-@import "@ionic/angular/css/padding.css";
-@import "@ionic/angular/css/float-elements.css";
-@import "@ionic/angular/css/text-alignment.css";
-@import "@ionic/angular/css/text-transformation.css";
-@import "@ionic/angular/css/flex-utils.css";
-
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';

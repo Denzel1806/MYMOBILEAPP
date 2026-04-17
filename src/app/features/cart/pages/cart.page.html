@@ -1,12 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" class="cart-header">
   <ion-toolbar>
     <ion-title>Shopping Cart</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="cart-page">
+  <div class="cart-bg-orb orb-1"></div>
+  <div class="cart-bg-orb orb-2"></div>
+  <div class="cart-bg-orb orb-3"></div>
+
   <div class="cart-shell">
-    <div class="hero-section">
+    <section class="hero-section glass-panel">
       <div class="hero-copy">
         <p class="eyebrow">Your Garage</p>
         <h1>Shopping Cart</h1>
@@ -19,24 +23,28 @@
         <strong>{{ cartItems.length }}</strong>
         <span>{{ cartItems.length === 1 ? 'Car Selected' : 'Cars Selected' }}</span>
       </div>
-    </div>
+    </section>
 
-    <div class="loading-section" *ngIf="isLoading">
+    <div class="loading-section glass-panel" *ngIf="isLoading">
       <ion-spinner name="crescent"></ion-spinner>
       <p>Loading cart...</p>
     </div>
 
     <div class="cart-layout" *ngIf="!isLoading && cartItems.length > 0">
-      <div class="cart-items-card">
+      <section class="cart-items-card glass-panel">
         <div class="section-header">
-          <h3>Your Selected Cars</h3>
-          <ion-button fill="clear" (click)="goToShop()">
+          <div>
+            <p class="section-kicker">Overview</p>
+            <h3>Your Selected Cars</h3>
+          </div>
+
+          <ion-button fill="clear" class="ghost-btn" (click)="goToShop()">
             Continue Shopping
           </ion-button>
         </div>
 
         <div class="cart-items">
-          <div class="cart-item" *ngFor="let item of cartItems">
+          <article class="cart-item" *ngFor="let item of cartItems">
             <div class="item-image" (click)="viewCarDetails(item)">
               <img
                 [src]="item.car.thumbnail"
@@ -46,15 +54,20 @@
 
             <div class="item-details">
               <h3 class="item-title">{{ item.car.brand }} {{ item.car.model }}</h3>
-              <p class="item-meta">
-                {{ item.car.year }} • {{ item.car.transmission }} • {{ item.car.fuelType }}
-              </p>
+
+              <div class="meta-chips">
+                <span class="meta-chip">{{ item.car.year }}</span>
+                <span class="meta-chip">{{ item.car.transmission }}</span>
+                <span class="meta-chip">{{ item.car.fuelType }}</span>
+              </div>
+
               <p class="item-price">\${{ item.car.price | number }}</p>
 
               <div class="quantity-controls">
                 <ion-button
                   fill="clear"
                   size="small"
+                  class="qty-btn"
                   (click)="updateQuantity(item, item.quantity - 1)"
                   [disabled]="item.quantity <= 1"
                 >
@@ -66,6 +79,7 @@
                 <ion-button
                   fill="clear"
                   size="small"
+                  class="qty-btn"
                   (click)="updateQuantity(item, item.quantity + 1)"
                 >
                   <ion-icon name="add-outline"></ion-icon>
@@ -77,7 +91,7 @@
               <p class="item-total">\${{ item.car.price * item.quantity | number }}</p>
 
               <div class="item-action-buttons">
-                <ion-button fill="clear" size="small" (click)="viewCarDetails(item)">
+                <ion-button fill="clear" size="small" class="ghost-btn" (click)="viewCarDetails(item)">
                   View
                 </ion-button>
 
@@ -85,37 +99,41 @@
                   fill="clear"
                   color="danger"
                   size="small"
+                  class="icon-only-btn"
                   (click)="removeItem(item)"
                 >
                   <ion-icon name="trash-outline"></ion-icon>
                 </ion-button>
               </div>
             </div>
-          </div>
+          </article>
         </div>
-      </div>
+      </section>
 
-      <div class="cart-summary-card">
+      <aside class="cart-summary-card glass-panel">
+        <p class="section-kicker">Summary</p>
         <h3>Order Summary</h3>
 
-        <div class="summary-row">
-          <span>Subtotal</span>
-          <span>\${{ subtotal | number:'1.2-2' }}</span>
-        </div>
+        <div class="summary-block">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>\${{ subtotal | number:'1.2-2' }}</span>
+          </div>
 
-        <div class="summary-row">
-          <span>Tax (8.5%)</span>
-          <span>\${{ tax | number:'1.2-2' }}</span>
-        </div>
+          <div class="summary-row">
+            <span>Tax (8.5%)</span>
+            <span>\${{ tax | number:'1.2-2' }}</span>
+          </div>
 
-        <div class="summary-row">
-          <span>Shipping</span>
-          <span>{{ shipping === 0 ? 'Free' : '$' + (shipping | number:'1.2-2') }}</span>
-        </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>{{ shipping === 0 ? 'Free' : '$' + (shipping | number:'1.2-2') }}</span>
+          </div>
 
-        <div class="summary-row total">
-          <span>Total</span>
-          <span>\${{ total | number:'1.2-2' }}</span>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>\${{ total | number:'1.2-2' }}</span>
+          </div>
         </div>
 
         <div class="summary-actions">
@@ -128,31 +146,33 @@
             Continue Shopping
           </ion-button>
 
-          <ion-button expand="block" fill="clear" (click)="goToFavorites()">
+          <ion-button expand="block" fill="clear" class="ghost-btn" (click)="goToFavorites()">
             View Favorites
           </ion-button>
         </div>
-      </div>
+      </aside>
     </div>
 
-    <div class="empty-cart" *ngIf="!isLoading && cartItems.length === 0">
+    <section class="empty-cart glass-panel" *ngIf="!isLoading && cartItems.length === 0">
       <div class="empty-cart-content">
         <div class="empty-icon-wrap">
           <ion-icon name="bag-handle-outline" class="empty-icon"></ion-icon>
         </div>
+
+        <p class="section-kicker">Nothing here yet</p>
         <h3>Your cart is empty</h3>
         <p>Add some cars to get started</p>
 
         <div class="empty-actions">
-          <ion-button (click)="goToShop()" class="shop-btn">
+          <ion-button (click)="goToShop()" class="shop-btn primary-btn">
             Start Shopping
           </ion-button>
 
-          <ion-button fill="outline" (click)="goToHome()">
+          <ion-button fill="outline" (click)="goToHome()" class="shop-btn">
             Go Home
           </ion-button>
         </div>
       </div>
-    </div>
+    </section>
   </div>
 </ion-content>

@@ -1,5 +1,4 @@
-@use "../../../../theme/mixins.scss" as *;
-
+@use "../../../../theme/mixins" as *;
 .about-content {
   --background: var(--app-background);
 }
