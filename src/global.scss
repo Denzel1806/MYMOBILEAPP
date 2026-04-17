@@ -25,6 +25,9 @@
 @import "theme/variables.scss";
 @import "theme/tokens.scss";
 
+/* Inter Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 /* Global styles */
 * {
   box-sizing: border-box;
@@ -32,6 +35,9 @@
 
 html {
   font-family: var(--font-family-primary);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -86,14 +92,81 @@ ion-toolbar {
 }
 
 ion-card {
-  --background: var(--card-background);
-  box-shadow: var(--card-shadow);
-  border-radius: var(--radius-md);
+  --background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  box-shadow: var(--glass-shadow);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  position: relative;
+  overflow: hidden;
+  @include smooth-transition;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--glass-reflection);
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glass-shadow-large);
+    --background: var(--glass-background-dark);
+  }
 }
 
 ion-button {
-  --border-radius: var(--radius-md);
-  font-weight: var(--font-weight-medium);
+  --border-radius: var(--radius-lg);
+  font-weight: var(--font-weight-semibold);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --box-shadow: 0 4px 16px rgba(37, 99, 235, 0.15);
+  --background-hover: var(--button-gradient);
+  --background-activated: var(--button-gradient);
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  
+  &::part(native) {
+    @include modern-button;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    --box-shadow: 0 8px 24px rgba(37, 99, 235, 0.25);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+  
+  &.button-solid {
+    --background: var(--button-gradient);
+    --background-hover: linear-gradient(135deg, #1D4ED8 0%, #1E40AF 100%);
+  }
+  
+  &.button-outline {
+    --border-width: 2px;
+    --border-color: var(--ion-color-primary);
+    --color: var(--ion-color-primary);
+    
+    &:hover {
+      --background: rgba(37, 99, 235, 0.1);
+    }
+  }
+  
+  &.button-clear {
+    --color: var(--ion-color-primary);
+    
+    &:hover {
+      --background: rgba(37, 99, 235, 0.05);
+    }
+  }
 }
 
 ion-input, ion-textarea {
@@ -101,19 +174,168 @@ ion-input, ion-textarea {
 }
 
 ion-searchbar {
-  --border-radius: var(--radius-md);
-  --background: var(--card-background);
+  --border-radius: var(--radius-2xl);
+  --background: var(--glass-background);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  --box-shadow: var(--glass-shadow);
+  --border-color: var(--glass-border);
+  --placeholder-color: var(--text-muted);
+  --placeholder-opacity: 0.7;
+  --icon-color: var(--text-muted);
+  --clear-button-color: var(--text-muted);
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid var(--glass-border);
+  @include smooth-transition;
+  
+  &:focus-within {
+    --background: var(--glass-background-dark);
+    --box-shadow: var(--glass-shadow-large);
+    transform: scale(1.02);
+  }
+  
+  &::part(native) {
+    padding: 0 var(--spacing-lg);
+  }
+  
+  &::part(searchbar-input) {
+    font-size: var(--text-body-md);
+    font-weight: var(--font-weight-medium);
+  }
+  
+  &::part(searchbar-icon) {
+    font-size: 20px;
+  }
 }
 
-/* Animations */
+/* Enhanced Animations */
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from { 
+    opacity: 0; 
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from { 
+    opacity: 0; 
+    transform: translateX(-30px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from { 
+    opacity: 0; 
+    transform: translateX(30px);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.9);
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% { 
+    background-position: -200% 0;
+  }
+  100% { 
+    background-position: 200% 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px);
+  }
+  50% { 
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 1;
+  }
+  50% { 
+    opacity: 0.7;
+  }
 }
 
 .fade-in {
-  animation: fadeIn 0.3s ease-in;
+  animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+.slide-in-left {
+  animation: slideInLeft 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slide-in-right {
+  animation: slideInRight 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scale-in {
+  animation: scaleIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Global transition classes */
+.transition-all {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-transform {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transition-opacity {
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Staggered animations for lists */
+.stagger-animation > * {
+  animation: fadeIn 0.5s cubic-bezier(0.4, 0, 0.2, 1) backwards;
+}
+
+.stagger-animation > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-animation > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-animation > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-animation > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-animation > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-animation > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger-animation > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger-animation > *:nth-child(8) { animation-delay: 0.8s; }
 
 /* Optional CSS utils that can be commented out */
 @import "@ionic/angular/css/padding.css";
