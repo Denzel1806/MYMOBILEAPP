@@ -1,4 +1,4 @@
-@use "../../../../theme/mixins" as *;
+@use "../../../../theme/mixins.scss" as *;
 .onboarding-content {
   --background: var(--app-background);
 }
